@@ -7,6 +7,8 @@ import mongooseConnection from './config/connection.mjs'; // Update the path
 
 import { typeDefs, resolvers } from './schema/index.mjs';
 
+const PORT = process.env.PORT || 4000;
+
 async function startApolloServer() {
     const app = express();
     const httpServer = http.createServer(app);
@@ -27,8 +29,8 @@ async function startApolloServer() {
     await server.start();
     server.applyMiddleware({ app });
 
-    await new Promise(resolve => httpServer.listen({ port: 4000 }, resolve));
-    console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`);
+    await new Promise(resolve => httpServer.listen({ port: PORT }, resolve));
+    console.log(`🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}`);
 }
 
 startApolloServer();
