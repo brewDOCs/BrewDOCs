@@ -12,6 +12,11 @@ The BEST app for micro-brewers to keep track of their recipes and brews!
 3. Installing the dependencies:
 ```npm install```
 
+4. Create a .env file in the server directory and add the variable and associated value. The variable and value can be found on the Heroku BrewDOCS app settings page in the Config Vars section.
+
+5. Run the following command to start the server:
+```npm run start```
+
 ## Contributing
 
 Do either of the following:
@@ -23,8 +28,8 @@ Do either of the following:
 ```git pull origin dev```
 
 3. Make your changes and commit them
-```git add .```
-```git commit -m "your commit message"```
+```git add .```  
+```git commit -m "your commit message"```  
 ```git push origin <branch-name>```
 
 OR
@@ -37,8 +42,8 @@ OR
 ```git pull origin dev```
 
 4. Make your changes and commit them
-```git add .```
-```git commit -m "your commit message"```
+```git add .```  
+```git commit -m "your commit message"```  
 ```git push origin <branch-name>```
 
 THEN
