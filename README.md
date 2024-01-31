@@ -3,21 +3,20 @@ The BEST app for micro-brewers to keep track of their recipes and brews!
 
 ## Deployment
 
-
+[Heroku Deployment](https://brewdocstest-9748decbee50.herokuapp.com/)
 
 ## Getting Started
 1. In your terminal, navigate to the directory you want to clone the repo into and run the following command:
 ```git clone git@github.com:brewDOCs/BrewDOCs.git```
 
-3. Installing the dependencies (NOTE: will change in the future):
-```cd server/```
+3. Installing the dependencies:
 ```npm install```
 
 ## Contributing
 
 Do either of the following:
 
-1. Create a new branch off of the dev branch using your first name as the branch name
+1. Create a new branch using your first name as the branch name
 ```git checkout -b <branch-name>```
 
 2. Pull from the dev branch before you start working on your contribution
@@ -30,7 +29,7 @@ Do either of the following:
 
 OR
 
-1. Go to https://github.com/brewDOCs/BrewDOCs/issues and create a new issue assign it to yourself, and add the label "In Progress"
+1. Go to https://github.com/brewDOCs/BrewDOCs/issues and create a new issue, assign it to yourself, and add then label "In Progress"
 
 2. Click the create a branch link under Development and it will create a new branch for you with the issue number and title
 
@@ -49,3 +48,5 @@ THEN
 2. Assign it to someone to be reviewed and then merged
 
 3. PROFIT
+
+NOTE: If you created the branch from an issue make sure to close the branch and the issue on Github.
