@@ -5,9 +5,10 @@ import { ApolloServer } from 'apollo-server-express';
 import { ApolloServerPluginDrainHttpServer, ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
 import express from 'express';
 import http from 'http';
-import mongooseConnection from './config/connection.mjs'; // Update the path
-
+import { mongooseConnection } from './config/connection.mjs'; // Update the path
 import { typeDefs, resolvers } from './schema/index.mjs';
+
+
 
 const PORT = process.env.PORT || 4000;
 
