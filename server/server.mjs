@@ -6,7 +6,7 @@ import { ApolloServerPluginDrainHttpServer, ApolloServerPluginLandingPageLocalDe
 import express from 'express';
 import http from 'http';
 import { mongooseConnection } from './config/connection.mjs'; // Update the path
-import { typeDefs, resolvers } from './schema/index.mjs';
+import { typeDefs, resolvers } from './graphql/index.mjs';
 
 
 
