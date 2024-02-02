@@ -5,7 +5,12 @@ import { ingredientsResolvers } from "./ingredientsResolvers.mjs";
 import { processResolvers } from "./processResolvers.mjs";
 
 export const resolvers = {
-  ...userResolvers,
-  ...ingredientsResolvers,
-  ...processResolvers,
+  Query: {
+    ...userResolvers.Query,
+    ...ingredientsResolvers.Query,
+  },
+  Mutation: {
+    ...userResolvers.Mutation,
+    ...ingredientsResolvers.Mutation,
+  },
 };

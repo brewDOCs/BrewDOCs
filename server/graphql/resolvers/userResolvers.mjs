@@ -9,7 +9,7 @@ export const userResolvers = {
     },
   },
   Mutation: {
-    addUser: async (parent, { username, email }) => {
+    addUser: async (_, { username, email }) => {
       const user = await User.create({ username, email });
       return user;
     },
