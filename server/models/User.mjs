@@ -13,6 +13,17 @@ const userSchema = new Schema({
         required: 'Please enter an email address!',
         match: [/.+@.+\..+/]
     },
+    password: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    beerMasters: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'BeerMaster'
+        }
+    ], 
 });
 
 const User = model('User', userSchema);
