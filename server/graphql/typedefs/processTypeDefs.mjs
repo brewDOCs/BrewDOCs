@@ -7,7 +7,7 @@ export const processTypeDefs = gql`
   type Query {
     getAllProcesses: [Process]
   }
-#   type Mutation {
-    
-#   }
+  #   type Mutation {
+
+  #   }
 `;
