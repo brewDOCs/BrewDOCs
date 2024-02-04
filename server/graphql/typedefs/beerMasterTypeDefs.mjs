@@ -1,3 +1,5 @@
+// BeerMaster Type Definitions
+
 import { gql } from "apollo-server-express";
 
 export const beerMasterTypeDefs = gql`

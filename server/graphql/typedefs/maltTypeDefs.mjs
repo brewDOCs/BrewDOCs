@@ -4,6 +4,7 @@ import { gql } from "apollo-server-express";
 
 export const maltTypeDefs = gql`
   type Malt {
+    _id: ID!
     maltName: String
     maltAmount: Float
   }

@@ -1,3 +1,5 @@
+// BeerMaster Resolvers
+
 import BeerMaster from "../../models/BeerMaster.mjs";
 import User from "../../models/User.mjs";
 
