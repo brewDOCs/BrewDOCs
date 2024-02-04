@@ -4,6 +4,7 @@ import { gql } from "apollo-server-express";
 
 export const yeastTypeDefs = gql`
   type Yeast {
+    _id: ID!
     yeastName: String
     yeastAmount: Float
   }

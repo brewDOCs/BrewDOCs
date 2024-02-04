@@ -4,6 +4,7 @@ import { gql } from "apollo-server-express";
 
 export const waterTypeDefs = gql`
   type Water {
+    _id: ID!
     waterAlkalinity: Float
     waterAmount: Float
   }

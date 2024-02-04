@@ -2,7 +2,7 @@
 
 import { userResolvers } from "./userResolvers.mjs";
 import { beerMasterResolvers } from "./beerMasterResolvers.mjs";
-import { ingredientsResolvers } from "./ingredientsResolvers.mjs";
+import { ingredientsListResolvers } from "./ingredientsListResolvers.mjs";
 import { hopsResolvers } from "./hopsResolvers.mjs";
 import { maltResolvers } from "./maltResolvers.mjs";
 import { yeastResolvers } from "./yeastResolvers.mjs";
@@ -14,7 +14,7 @@ export const resolvers = {
   Query: {
     ...userResolvers.Query,
     ...beerMasterResolvers.Query,
-    ...ingredientsResolvers.Query,
+    ...ingredientsListResolvers.Query,
     ...hopsResolvers.Query,
     ...maltResolvers.Query,
     ...yeastResolvers.Query,
@@ -24,7 +24,7 @@ export const resolvers = {
   Mutation: {
     ...userResolvers.Mutation,
     ...beerMasterResolvers.Mutation,
-    ...ingredientsResolvers.Mutation,
+    ...ingredientsListResolvers.Mutation,
     ...hopsResolvers.Mutation,
     ...maltResolvers.Mutation,
     ...yeastResolvers.Mutation,

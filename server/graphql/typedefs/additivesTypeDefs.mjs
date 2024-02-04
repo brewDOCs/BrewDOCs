@@ -4,6 +4,7 @@ import { gql } from "apollo-server-express";
 
 export const additivesTypeDefs = gql`
   type Additives {
+    _id: ID!
     additiveName: String
     additiveAmount: Float
   }

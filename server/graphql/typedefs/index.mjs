@@ -2,7 +2,7 @@
 
 import { userTypeDefs } from "./userTypeDefs.mjs";
 import { beerMasterTypeDefs } from "./beerMasterTypeDefs.mjs";
-import { ingredientsTypeDefs } from "./ingredientsTypeDefs.mjs";
+import { ingredientsListTypeDefs } from "./ingredientsListTypeDefs.mjs";
 import { hopsTypeDefs } from "./hopsTypeDefs.mjs";
 import { maltTypeDefs } from "./maltTypeDefs.mjs";
 import { yeastTypeDefs } from "./yeastTypeDefs.mjs";
@@ -13,7 +13,7 @@ import { processTypeDefs } from "./processTypeDefs.mjs";
 export const typeDefs = [
   userTypeDefs,
   beerMasterTypeDefs,
-  ingredientsTypeDefs,
+  ingredientsListTypeDefs,
   hopsTypeDefs,
   maltTypeDefs,
   yeastTypeDefs,
