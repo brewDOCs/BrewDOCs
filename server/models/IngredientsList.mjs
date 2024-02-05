@@ -2,7 +2,11 @@
 
 import { Schema, model } from "mongoose";
 
-const ingredientsSchema = new Schema({
+const ingredientsListSchema = new Schema({
+  name: {
+    type: String,
+    required: true,
+  },
   malt: [
     {
       type: Schema.Types.ObjectId,
@@ -39,6 +43,6 @@ const ingredientsSchema = new Schema({
   },
 });
 
-const Ingredients = model("Ingredients", ingredientsSchema);
+const IngredientsList = model("IngredientsList", ingredientsListSchema);
 
-export default Ingredients;
+export default IngredientsList;
