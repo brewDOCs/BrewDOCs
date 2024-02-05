@@ -21,9 +21,7 @@ export const ingredientsListTypeDefs = gql`
 
   type Mutation {
     # these are for admin use and should NOT be used in the client
-    addIngredientsList(
-      name: String!
-    ): IngredientsList
+    addIngredientsList(name: String!): IngredientsList
     addToIngredientsList(
       malt: [ID!]!
       water: [ID!]!
