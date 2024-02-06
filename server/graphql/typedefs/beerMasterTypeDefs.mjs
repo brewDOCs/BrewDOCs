@@ -11,6 +11,8 @@ export const beerMasterTypeDefs = gql`
     abv: Float
     ibu: Float
     image: String
+    ingredientsList: [IngredientsList]
+    ingredientsListMaster: IngredientsList
   }
   type Query {
     getBeerMasters: [BeerMaster]
