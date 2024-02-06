@@ -6,9 +6,18 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "install": "cd server && npm install",
-    "start": "cd server && npx nodemon server.mjs"
+    "start": "cd server && npx nodemon server.mjs",
+    "prepare": "husky && husky install"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "husky": "^8.0.0",
+    "lint-staged": "^15.2.2",
+    "prettier": "3.2.5"
+  },
+  "lint-staged": {
+    "*.{js,mjs,jsx,ts,tsx,html,css,md}": "prettier --write"
+  }
 }
