@@ -1,6 +1,8 @@
 // User Model
 
 import { Schema, model } from "mongoose";
+// import bcrypt from "bcrypt";
+import bcrypt from "bcrypt";
 
 const userSchema = new Schema({
   username: {
@@ -26,6 +28,11 @@ const userSchema = new Schema({
       ref: "BeerMaster",
     },
   ],
+});
+
+userSchema.pre("save", async function (next) {
+  this.password = await bcrypt.hash(this.password, 12);
+  next();
 });
 
 const User = model("User", userSchema);
