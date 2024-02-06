@@ -29,7 +29,18 @@ const beerMasterSchema = new Schema({
     type: String,
     trim: true,
   },
+  ingredientsList: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "IngredientsList",
+    },
+  ],
+  ingredientsListMaster: {
+    type: Schema.Types.ObjectId,
+    ref: "IngredientsList",
+  },
 });
+
 
 const BeerMaster = model("BeerMaster", beerMasterSchema);
 

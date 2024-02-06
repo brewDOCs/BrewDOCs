@@ -17,6 +17,8 @@ export const ingredientsListTypeDefs = gql`
   type Query {
     getAllIngredientsList: [IngredientsList]
     getIngredients(id: ID!): IngredientsList
+    getAllIngredientsListByBeerMasterID(beerMasterId: ID!): [IngredientsList]
+    getOneIngredientsListByBeerMasterId(beerMasterId: ID!, ingredientsListId: ID!): [IngredientsList]
   }
 
   type Mutation {
@@ -29,5 +31,8 @@ export const ingredientsListTypeDefs = gql`
       yeast: [ID!]!
       additives: [ID!]!
     ): IngredientsList
+    # these are for admin use and should NOT be used in the client
+    createIngredientsList(name: String!, beerMasterId: ID!): IngredientsList
+
   }
 `;
