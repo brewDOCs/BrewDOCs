@@ -8,8 +8,10 @@ import {
 } from "apollo-server-core";
 import express from "express";
 import http from "http";
-import { mongooseConnection } from "./config/connection.mjs"; // Update the path
+import { mongooseConnection } from "./config/connection.mjs";
 import { typeDefs, resolvers } from "./graphql/index.mjs";
+import cookieParser from "cookie-parser";
+import adminRoutes from "./utils/AdminRoutes.mjs";
 
 const PORT = process.env.PORT || 4000;
 
@@ -17,7 +19,6 @@ async function startApolloServer() {
   const app = express();
   const httpServer = http.createServer(app);
 
-  // Wait for the mongoose connection to be established
   await mongooseConnection;
   console.log("Connected to MongoDB");
 
@@ -28,7 +29,15 @@ async function startApolloServer() {
       ApolloServerPluginDrainHttpServer({ httpServer }),
       ApolloServerPluginLandingPageLocalDefault(),
     ],
+    context: ({ req, res }) => ({ req, res }), // Pass request and response objects to context
   });
+
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: true }));
+
+  app.use(cookieParser());
+
+  app.use("/admin", adminRoutes);
 
   await server.start();
   server.applyMiddleware({ app });
