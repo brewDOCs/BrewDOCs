@@ -1,3 +1,5 @@
+// Process Type Definitions
+
 import { gql } from "apollo-server-express";
 
 export const processTypeDefs = gql`

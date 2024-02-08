@@ -41,7 +41,6 @@ const beerMasterSchema = new Schema({
   },
 });
 
+const BeerMasterModel = model("BeerMaster", beerMasterSchema);
 
-const BeerMaster = model("BeerMaster", beerMasterSchema);
-
-export default BeerMaster;
+export default BeerMasterModel;

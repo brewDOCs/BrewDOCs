@@ -1,23 +1,23 @@
-import User from "../models/User.mjs";
+import UserModel from "../services/user/UserModel.mjs";
 import { generateToken } from "./SecretToken.mjs";
 
 export const userControllers = {
   getUsers: async () => {
-    return await User.find({});
+    return await UserModel.find({});
   },
   getOneUser: async (_id) => {
-    return await User.findById(_id);
+    return await UserModel.findById(_id);
   },
   addUser: async (username, email, password) => {
-    const user = await User.create({ username, email, password });
+    const user = await UserModel.create({ username, email, password });
     return user;
   },
   deleteUser: async (_id) => {
-    const user = await User.findByIdAndDelete(_id);
+    const user = await UserModel.findByIdAndDelete(_id);
     return user;
   },
   login: async (username, password, res) => {
-    const user = await User.findOne({ username, password });
+    const user = await UserModel.findOne({ username, password });
     if (!user) {
       throw new Error("No user with that username or password found!");
     }
@@ -26,7 +26,7 @@ export const userControllers = {
     return user; // Return the user object
   },
   signup: async (username, email, password, res) => {
-    const user = await User.create({ username, email, password });
+    const user = await UserModel.create({ username, email, password });
     const token = generateToken(username);
     res.cookie("token", token, { httpOnly: true }); // Set token as a cookie
     return { username }; // Return only username if needed

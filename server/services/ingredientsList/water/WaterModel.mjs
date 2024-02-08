@@ -13,6 +13,6 @@ const WaterSchema = new Schema({
   },
 });
 
-const Water = model("Water", WaterSchema);
+const WaterModel = model("Water", WaterSchema);
 
-export default Water;
+export default WaterModel;

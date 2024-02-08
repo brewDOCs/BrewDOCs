@@ -1,19 +1,19 @@
 // Malt Resolvers
 
-import Malt from "../../models/Malt.mjs";
+import MaltModel from "./MaltModel.mjs";
 
 export const maltResolvers = {
   Query: {
     getAllMalts: async () => {
-      return await Malt.find({});
+      return await MaltModel.find({});
     },
     getMaltById: async (_, { maltId }) => {
-      return await Malt.findById(maltId);
+      return await MaltModel.findById(maltId);
     },
   },
   Mutation: {
     addMalt: async (_, { maltName, maltAmount }) => {
-      const malt = await Malt.create({ maltName, maltAmount });
+      const malt = await MaltModel.create({ maltName, maltAmount });
       return malt;
     },
   },

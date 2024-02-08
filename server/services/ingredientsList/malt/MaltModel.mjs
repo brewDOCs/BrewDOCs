@@ -13,6 +13,6 @@ const MaltSchema = new Schema({
   },
 });
 
-const Malt = model("Malt", MaltSchema);
+const MaltModel = model("Malt", MaltSchema);
 
-export default Malt;
+export default MaltModel;
