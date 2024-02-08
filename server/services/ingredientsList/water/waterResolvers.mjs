@@ -1,19 +1,19 @@
 // Water Resolvers
 
-import Water from "../../models/Water.mjs";
+import WaterModel from "./WaterModel.mjs";
 
 export const waterResolvers = {
   Query: {
     getAllWater: async () => {
-      return await Water.find({});
+      return await WaterModel.find({});
     },
     getWaterById: async (_, { waterId }) => {
-      return await Water.findById(waterId);
+      return await WaterModel.findById(waterId);
     },
   },
   Mutation: {
     addWater: async (_, { waterAlkalinity, waterAmount }) => {
-      const water = await Water.create({ waterAlkalinity, waterAmount });
+      const water = await WaterModel.create({ waterAlkalinity, waterAmount });
       return water;
     },
   },

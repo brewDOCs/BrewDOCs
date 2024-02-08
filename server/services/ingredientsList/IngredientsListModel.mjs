@@ -43,6 +43,6 @@ const ingredientsListSchema = new Schema({
   },
 });
 
-const IngredientsList = model("IngredientsList", ingredientsListSchema);
+const IngredientsListModel = model("IngredientsList", ingredientsListSchema);
 
-export default IngredientsList;
+export default IngredientsListModel;

@@ -9,7 +9,7 @@ import {
 import express from "express";
 import http from "http";
 import { mongooseConnection } from "./config/connection.mjs";
-import { typeDefs, resolvers } from "./graphql/index.mjs";
+import { typeDefs, resolvers } from "./services/graphql.mjs";
 import cookieParser from "cookie-parser";
 import adminRoutes from "./utils/AdminRoutes.mjs";
 

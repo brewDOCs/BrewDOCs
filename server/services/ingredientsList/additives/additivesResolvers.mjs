@@ -1,19 +1,19 @@
 // Additives Resolvers
 
-import Additives from "../../models/Additives.mjs";
+import AdditivesModel from "./AdditivesModel.mjs";
 
 export const additivesResolvers = {
   Query: {
     getAllAdditives: async () => {
-      return await Additives.find({});
+      return await AdditivesModel.find({});
     },
     getAdditiveById: async (_, { additiveID }) => {
-      return await Additives.findById(additiveID);
+      return await AdditivesModel.findById(additiveID);
     },
   },
   Mutation: {
     addAdditives: async (_, { additiveName, additiveAmount }) => {
-      const additive = await Additives.create({
+      const additive = await AdditivesModel.create({
         additiveName,
         additiveAmount,
       });

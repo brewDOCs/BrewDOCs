@@ -13,6 +13,6 @@ const HopsSchema = new Schema({
   },
 });
 
-const Hops = model("Hops", HopsSchema);
+const HopsModel = model("Hops", HopsSchema);
 
-export default Hops;
+export default HopsModel;

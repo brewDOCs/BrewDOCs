@@ -13,6 +13,6 @@ const AdditivesSchema = new Schema({
   },
 });
 
-const Additives = model("Additives", AdditivesSchema);
+const AdditivesModel = model("Additives", AdditivesSchema);
 
-export default Additives;
+export default AdditivesModel;

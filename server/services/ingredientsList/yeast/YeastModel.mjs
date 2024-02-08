@@ -13,6 +13,6 @@ const YeastSchema = new Schema({
   },
 });
 
-const Yeast = model("Yeast", YeastSchema);
+const YeastModel = model("Yeast", YeastSchema);
 
-export default Yeast;
+export default YeastModel;
