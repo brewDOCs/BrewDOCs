@@ -21,15 +21,18 @@ export const beerMasterTypeDefs = gql`
     getOneBeerMasterByUserId(userId: ID!, beerMasterId: ID!): [BeerMaster]
   }
   type Mutation {
+    # these are for admin use and should NOT be used in the client
     addBeerMaster(name: String!, type: String!): BeerMaster
+    addBeerMasterToUser(userId: ID!, beerMasterId: ID!): [BeerMaster]
     removeBeerMaster(id: ID!): BeerMaster
+    # these are for user use and should be used in the client
     createBeerMaster(name: String!, type: String!, userId: ID!): BeerMaster
     deleteBeerMaster(id: ID!, userId: ID!): BeerMaster
     updateBeerMaster(
       id: ID!
       userId: ID!
-      name: String!
-      type: String!
+      name: String
+      type: String
       abv: Float
       ibu: Float
       image: String

@@ -10,8 +10,7 @@ export const userTypeDefs = gql`
     password: String!
   }
   type AuthPayload {
-    user: User!
-    token: String!
+    username: String!
   }
   type Query {
     getUsers: [User]
@@ -21,5 +20,6 @@ export const userTypeDefs = gql`
     login(username: String!, password: String!): AuthPayload
     signup(username: String!, email: String!, password: String!): AuthPayload
     addUser(username: String!, email: String!, password: String!): User
+    deleteUser(_id: ID!): User
   }
 `;

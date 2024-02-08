@@ -20,7 +20,7 @@ export const beerMasterResolvers = {
     getOneBeerMasterByUserId: async (_, { userId, beerMasterId }) => {
       const user = await User.findById(userId).populate("beerMasters");
       return user.beerMasters.filter(
-        (beerMaster) => beerMaster._id.toString() === beerMasterId
+        (beerMaster) => beerMaster._id.toString() === beerMasterId,
       );
     },
   },
@@ -29,6 +29,13 @@ export const beerMasterResolvers = {
     addBeerMaster: async (_, { name, type }) => {
       const beerMaster = await BeerMaster.create({ name, type });
       return beerMaster;
+    },
+    addBeerMasterToUser: async (_, { userId, beerMasterId }) => {
+      const user = await User.findById(userId).populate("beerMasters");
+      const beerMaster = await BeerMaster.findById(beerMasterId);
+      user.beerMasters.push(beerMaster);
+      await user.save();
+      return user.beerMasters;
     },
     removeBeerMaster: async (_, { id }) => {
       const beerMaster = await BeerMaster.findByIdAndDelete(id);
@@ -50,15 +57,15 @@ export const beerMasterResolvers = {
       await user.save();
       return beerMaster;
     },
-    // update BeerMaster by user
+    // update BeerMaster by beerMasterId
     updateBeerMaster: async (
       _,
-      { id, userId, name, type, abv, ibu, image }
+      { id, userId, name, type, abv, ibu, image },
     ) => {
       const beerMaster = await BeerMaster.findByIdAndUpdate(
         id,
         { name, type, abv, ibu, image },
-        { new: true }
+        { new: true },
       );
       return beerMaster;
     },
