@@ -3,10 +3,6 @@
 import { Schema, model } from "mongoose";
 
 const ingredientsListSchema = new Schema({
-  name: {
-    type: String,
-    required: true,
-  },
   malt: [
     {
       type: Schema.Types.ObjectId,
@@ -40,6 +36,10 @@ const ingredientsListSchema = new Schema({
   lastmodified: {
     type: Date,
     default: Date.now,
+    // format date for get request
+    get: (date) => {
+      return date.toISOString();
+    },
   },
 });
 
