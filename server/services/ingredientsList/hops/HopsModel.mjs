@@ -8,6 +8,13 @@ const HopsSchema = new Schema({
     required: true,
     trim: true,
   },
+  hopsAlphaAcid: {
+    type: Number,
+  },
+  hopsType: {
+    type: String,
+    trim: true,
+  },
   hopsAmount: {
     type: Number,
   },

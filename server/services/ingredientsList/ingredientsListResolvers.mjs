@@ -61,7 +61,6 @@ export const ingredientsListResolvers = {
     updateIngredientsList: async (_, { id, beerMasterId }) => {
       const ingredientsList = await IngredientsListModel.findById(id);
       const beerMaster = await BeerMasterModel.findById(beerMasterId);
-      const beerMasterIngredientsList = beerMaster.ingredientsList;
       ingredientsList.lastmodified = Date.now();
       await beerMaster.save();
       return ingredientsList;
