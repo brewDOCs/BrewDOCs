@@ -8,6 +8,15 @@ const MaltSchema = new Schema({
     required: true,
     trim: true,
   },
+  lovibond: {
+    type: Number,
+  },
+  ppg: {
+    type: Number,
+  },
+  dp: {
+    type: Number,
+  },
   maltAmount: {
     type: Number,
   },
