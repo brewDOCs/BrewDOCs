@@ -8,6 +8,13 @@ import { yeastTypeDefs } from "./ingredientsList/yeast/yeastTypeDefs.mjs";
 import { additivesTypeDefs } from "./ingredientsList/additives/additivesTypeDefs.mjs";
 import { waterTypeDefs } from "./ingredientsList/water/waterTypeDefs.mjs";
 import { processTypeDefs } from "./process/processTypeDefs.mjs";
+import { mashingTypeDefs } from "./process/mashing/mashingTypeDefs.mjs";
+import { wortTypeDefs } from "./process/wort/wortTypeDefs.mjs";
+import { fermentationTypeDefs } from "./process/fermentation/fermentationTypeDefs.mjs";
+import { conditioningTypeDefs } from "./process/conditioning/conditioningTypeDefs.mjs";
+import { coolingTypeDefs } from "./process/cooling/coolingTypeDefs.mjs";
+import { clarificationTypeDefs } from "./process/clarification/clarificationTypeDefs.mjs";
+import { lauteringTypeDefs } from "./process/lautering/lauteringTypeDefs.mjs";
 
 // GraphQL Resolvers
 import { userResolvers } from "./user/userResolvers.mjs";
@@ -19,6 +26,13 @@ import { yeastResolvers } from "./ingredientsList/yeast/yeastResolvers.mjs";
 import { additivesResolvers } from "./ingredientsList/additives/additivesResolvers.mjs";
 import { waterResolvers } from "./ingredientsList/water/waterResolvers.mjs";
 import { processResolvers } from "./process/processResolvers.mjs";
+import { mashingResolvers } from "./process/mashing/mashingResolvers.mjs";
+import { wortResolvers } from "./process/wort/wortResolvers.mjs";
+import { fermentationResolvers } from "./process/fermentation/fermentationResolvers.mjs";
+import { conditioningResolvers } from "./process/conditioning/conditioningResolvers.mjs";
+import { coolingResolvers } from "./process/cooling/coolingResolvers.mjs";
+import { clarificationResolvers } from "./process/clarification/clarificationResolvers.mjs";
+import { lauteringResolvers } from "./process/lautering/lauteringResolvers.mjs";
 
 export const typeDefs = [
   userTypeDefs,
@@ -30,6 +44,13 @@ export const typeDefs = [
   additivesTypeDefs,
   waterTypeDefs,
   processTypeDefs,
+  mashingTypeDefs,
+  wortTypeDefs,
+  fermentationTypeDefs,
+  conditioningTypeDefs,
+  coolingTypeDefs,
+  clarificationTypeDefs,
+  lauteringTypeDefs,
 ];
 
 export const resolvers = {
@@ -43,6 +64,13 @@ export const resolvers = {
     ...additivesResolvers.Query,
     ...waterResolvers.Query,
     ...processResolvers.Query,
+    ...mashingResolvers.Query,
+    ...wortResolvers.Query,
+    ...fermentationResolvers.Query,
+    ...conditioningResolvers.Query,
+    ...coolingResolvers.Query,
+    ...clarificationResolvers.Query,
+    ...lauteringResolvers.Query,
   },
   Mutation: {
     ...userResolvers.Mutation,
@@ -54,5 +82,12 @@ export const resolvers = {
     ...additivesResolvers.Mutation,
     ...waterResolvers.Mutation,
     ...processResolvers.Mutation,
+    ...mashingResolvers.Mutation,
+    ...wortResolvers.Mutation,
+    ...fermentationResolvers.Mutation,
+    ...conditioningResolvers.Mutation,
+    ...coolingResolvers.Mutation,
+    ...clarificationResolvers.Mutation,
+    ...lauteringResolvers.Mutation,
   },
 };
