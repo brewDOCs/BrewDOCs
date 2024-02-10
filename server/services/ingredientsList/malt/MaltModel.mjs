@@ -8,13 +8,13 @@ const MaltSchema = new Schema({
     required: true,
     trim: true,
   },
-  lovibond: {
+  lovibondColorScale: {
     type: Number,
   },
-  ppg: {
+  sucrosePointsPerPoundPerGallon: {
     type: Number,
   },
-  dp: {
+  diastaticPower: {
     type: Number,
   },
   maltAmount: {
