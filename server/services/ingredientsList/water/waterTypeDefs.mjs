@@ -14,8 +14,6 @@ export const waterTypeDefs = gql`
     waterAmount: Float
   }
   type Query {
-    getAllWater: [Water]
-    getWaterById(waterId: ID!): Water
     retrieveAllWaterByIngredientsListID(ingredientsListId: ID!): [Water]
     retrieveOneWaterByIngredientsListID(
       ingredientsListId: ID!
@@ -23,7 +21,6 @@ export const waterTypeDefs = gql`
     ): Water
   }
   type Mutation {
-    addWater(waterAlkalinity: Float!, waterAmount: Float): Water
     createWaterByIngredientsListID(
       ingredientsListId: ID!
       waterAlkalinity: Float!
