@@ -38,13 +38,20 @@ export const maltResolvers = {
     // This for client side use
     createMaltByIngredientsList: async (
       _,
-      { ingredientsListId, maltName, lovibond, ppg, dp, maltAmount },
+      {
+        ingredientsListId,
+        maltName,
+        lovibondColorScale,
+        sucrosePointsPerPoundPerGallon,
+        diastaticPower,
+        maltAmount,
+      },
     ) => {
       const malt = await MaltModel.create({
         maltName,
-        lovibond,
-        ppg,
-        dp,
+        lovibondColorScale,
+        sucrosePointsPerPoundPerGallon,
+        diastaticPower,
         maltAmount,
       });
       const ingredientsList =
@@ -55,11 +62,24 @@ export const maltResolvers = {
     },
     updateMalt: async (
       _,
-      { maltId, maltName, lovibond, ppg, dp, maltAmount },
+      {
+        maltId,
+        maltName,
+        lovibondColorScale,
+        sucrosePointsPerPoundPerGallon,
+        diastaticPower,
+        maltAmount,
+      },
     ) => {
       const malt = await MaltModel.findByIdAndUpdate(
         maltId,
-        { maltName, lovibond, ppg, dp, maltAmount },
+        {
+          maltName,
+          lovibondColorScale,
+          sucrosePointsPerPoundPerGallon,
+          diastaticPower,
+          maltAmount,
+        },
         { new: true },
       );
       return malt;

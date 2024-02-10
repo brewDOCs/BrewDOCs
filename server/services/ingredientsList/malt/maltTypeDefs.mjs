@@ -6,9 +6,9 @@ export const maltTypeDefs = gql`
   type Malt {
     _id: ID!
     maltName: String
-    lovibond: Float
-    ppg: Float
-    dp: Float
+    lovibondColorScale: Float
+    sucrosePointsPerPoundPerGallon: Float
+    diastaticPower: Float
     maltAmount: Float
   }
   type Query {
@@ -25,17 +25,17 @@ export const maltTypeDefs = gql`
     createMaltByIngredientsList(
       ingredientsListId: ID!
       maltName: String!
-      lovibond: Float
-      ppg: Float
-      dp: Float
+      lovibondColorScale: Float
+      sucrosePointsPerPoundPerGallon: Float
+      diastaticPower: Float
       maltAmount: Float
     ): Malt
     updateMalt(
       maltId: ID!
       maltName: String
-      lovibond: Float
-      ppg: Float
-      dp: Float
+      lovibondColorScale: Float
+      sucrosePointsPerPoundPerGallon: Float
+      diastaticPower: Float
       maltAmount: Float
     ): Malt
     removeMaltByIngredientsList(ingredientsListId: ID!, maltId: ID!): Malt
