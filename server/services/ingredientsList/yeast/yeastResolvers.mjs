@@ -5,14 +5,7 @@ import IngredientsListModel from "../IngredientsListModel.mjs";
 
 export const yeastResolvers = {
   Query: {
-    // these are for admin use only and should be removed in production
-    getAllYeast: async () => {
-      return await YeastModel.find({});
-    },
-    getYeastById: async (_, { yeastId }) => {
-      return await YeastModel.findById(yeastId);
-    },
-    // these are for client side use
+    // get all yeasts by ingredientsListId
     retrieveAllYeastByIngredientsListId: async (_, { ingredientsListId }) => {
       const ingredientsList =
         await IngredientsListModel.findById(ingredientsListId).populate(
@@ -20,6 +13,7 @@ export const yeastResolvers = {
         );
       return ingredientsList.yeast;
     },
+    // get one yeast by ingredientsListId and yeastId
     retrieveOneYeastByIngredientsListId: async (
       _,
       { ingredientsListId, yeastId },
@@ -34,12 +28,7 @@ export const yeastResolvers = {
     },
   },
   Mutation: {
-    // these are for admin use only and should be removed in production
-    addYeast: async (_, { yeastName, yeastAmount }) => {
-      const yeast = await YeastModel.create({ yeastName, yeastAmount });
-      return yeast;
-    },
-    // these are for client side use
+    // create yeast by ingredientsList with only the name required and add it to the yeast array in the ingredientsList
     createYeastByIngredientsList: async (
       _,
       {
@@ -66,6 +55,7 @@ export const yeastResolvers = {
       await ingredientsList.save();
       return yeast;
     },
+    // update yeast by ingredientsListId and yeastId
     updateYeast: async (
       _,
       {
@@ -92,6 +82,7 @@ export const yeastResolvers = {
       );
       return yeast;
     },
+    // remove yeast by ingredientsListId and yeastId
     removeYeastByIngredientsList: async (_, { ingredientsListId, yeastId }) => {
       const ingredientsList =
         await IngredientsListModel.findById(ingredientsListId);

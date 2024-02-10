@@ -11,8 +11,6 @@ export const hopsTypeDefs = gql`
     hopsAmount: Float
   }
   type Query {
-    getAllHops: [Hops]
-    getHopsById(hopsId: ID!): Hops
     retrieveHopsByIngredientsListID(ingredientsListId: ID!): [Hops]
     retrieveOneHopsByIngredientsListID(
       ingredientsListId: ID!
@@ -20,7 +18,6 @@ export const hopsTypeDefs = gql`
     ): Hops
   }
   type Mutation {
-    addHops(hopsName: String!, hopsAmount: Float): Hops
     createHopsByIngredientsListID(
       ingredientsListId: ID!
       hopsName: String!

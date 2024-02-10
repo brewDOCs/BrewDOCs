@@ -13,8 +13,6 @@ export const yeastTypeDefs = gql`
     yeastAmount: Float
   }
   type Query {
-    getAllYeast: [Yeast]
-    getYeastById(yeastId: ID!): Yeast
     retrieveAllYeastByIngredientsListId(ingredientsListId: ID!): [Yeast]
     retrieveOneYeastByIngredientsListId(
       ingredientsListId: ID!
@@ -22,7 +20,6 @@ export const yeastTypeDefs = gql`
     ): Yeast
   }
   type Mutation {
-    addYeast(yeastName: String!, yeastAmount: Float): Yeast
     createYeastByIngredientsList(
       ingredientsListId: ID!
       yeastName: String!

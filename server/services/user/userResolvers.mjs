@@ -13,17 +13,6 @@ export const userResolvers = {
     },
   },
   Mutation: {
-    // this is admin only
-    addUser: async (_, { username, email, password }) => {
-      const user = await UserModel.create({ username, email, password });
-      return user;
-    },
-    // delete user and all veerMasters associated with user
-    deleteUser: async (_, { _id }) => {
-      const user = await UserModel.findByIdAndDelete(_id);
-      return user;
-    },
-    // this is client only
     // login user and set token as a cookie
     login: async (_, { username, password }, { res }) => {
       const user = await UserModel.findOne({ username, password });

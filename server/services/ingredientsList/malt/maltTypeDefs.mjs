@@ -12,8 +12,6 @@ export const maltTypeDefs = gql`
     maltAmount: Float
   }
   type Query {
-    getAllMalts: [Malt]
-    getMaltById(maltId: ID!): Malt
     retrieveAllMaltsByIngredientsListId(ingredientsListId: ID!): [Malt]
     retrieveOneMaltByIngredientsListId(
       ingredientsListId: ID!
@@ -21,7 +19,6 @@ export const maltTypeDefs = gql`
     ): Malt
   }
   type Mutation {
-    addMalt(maltName: String!, maltAmount: Float): Malt
     createMaltByIngredientsList(
       ingredientsListId: ID!
       maltName: String!

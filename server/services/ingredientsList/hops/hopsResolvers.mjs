@@ -5,19 +5,13 @@ import IngredientsListModel from "../IngredientsListModel.mjs";
 
 export const hopsResolvers = {
   Query: {
-    // this is for the admin and should not be used in the client
-    getAllHops: async () => {
-      return await HopsModel.find({});
-    },
-    getHopsById: async (_, { hopsId }) => {
-      return await HopsModel.findById(hopsId);
-    },
-    // this is for the client and should be used in the client
+    // get all hops by ingredientsListId
     retrieveHopsByIngredientsListID: async (_, { ingredientsListId }) => {
       const ingredientsList =
         await IngredientsListModel.findById(ingredientsListId).populate("hops");
       return ingredientsList.hops;
     },
+    // get one hops by ingredientsListId and hopsId
     retrieveOneHopsByIngredientsListID: async (
       _,
       { ingredientsListId, hopsId },
@@ -29,13 +23,9 @@ export const hopsResolvers = {
       )[0];
     },
   },
+
   Mutation: {
-    // this is for the admin and should not be used in the client
-    addHops: async (_, { hopsName, hopsAmount }) => {
-      const hops = await HopsModel.create({ hopsName, hopsAmount });
-      return hops;
-    },
-    // this is for the client and should be used in the client
+    // create hops by ingredientsList with only the name required and add it to the hops array in the ingredientsList
     createHopsByIngredientsListID: async (
       _,
       { ingredientsListId, hopsName, hopsAlphaAcid, hopsType, hopsAmount },
@@ -52,6 +42,7 @@ export const hopsResolvers = {
       await ingredientsList.save();
       return hops;
     },
+    // update hops by ingredientsListId and hopsId
     updateHops: async (
       _,
       { hopsId, hopsName, hopsAlphaAcid, hopsType, hopsAmount },
@@ -63,6 +54,7 @@ export const hopsResolvers = {
       );
       return hops;
     },
+    // remove hops by ingredientsListId and hopsId
     removeHopsByIngredientsListID: async (_, { ingredientsListId, hopsId }) => {
       const ingredientsList =
         await IngredientsListModel.findById(ingredientsListId);
