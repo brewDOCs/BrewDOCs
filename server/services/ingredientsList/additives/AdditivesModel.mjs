@@ -8,6 +8,11 @@ const AdditivesSchema = new Schema({
     required: true,
     trim: true,
   },
+  additiveType: {
+    type: String,
+    required: true,
+    trim: true,
+  },
   additiveAmount: {
     type: Number,
   },
