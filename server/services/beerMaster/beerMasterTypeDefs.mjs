@@ -15,19 +15,16 @@ export const beerMasterTypeDefs = gql`
     ingredientsListMaster: IngredientsList
   }
   type Query {
-    getBeerMasters: [BeerMaster]
-    getBeerMasterById(id: ID!): BeerMaster
-    getAllBeerMastersByUserId(userId: ID!): [BeerMaster]
-    getOneBeerMasterByUserId(userId: ID!, beerMasterId: ID!): [BeerMaster]
+    retrieveAllBeerMastersByUserId(userId: ID!): [BeerMaster]
+    retrieveOneBeerMasterByUserId(beerMasterId: ID!, userId: ID!): BeerMaster
   }
   type Mutation {
-    # these are for admin use and should NOT be used in the client
-    addBeerMaster(name: String!, type: String!): BeerMaster
-    addBeerMasterToUser(userId: ID!, beerMasterId: ID!): [BeerMaster]
-    removeBeerMaster(id: ID!): BeerMaster
-    # these are for user use and should be used in the client
-    createBeerMaster(name: String!, type: String!, userId: ID!): BeerMaster
-    deleteBeerMaster(id: ID!, userId: ID!): BeerMaster
+    createBeerMasterByUserID(
+      name: String!
+      type: String!
+      userId: ID!
+    ): BeerMaster
+    removeBeerMasterByUserID(id: ID!, userId: ID!): BeerMaster
     updateBeerMaster(
       id: ID!
       userId: ID!

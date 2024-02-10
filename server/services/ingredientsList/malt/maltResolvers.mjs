@@ -5,19 +5,13 @@ import IngredientsListModel from "../IngredientsListModel.mjs";
 
 export const maltResolvers = {
   Query: {
-    // This is for admin use only and should be removed in production
-    getAllMalts: async () => {
-      return await MaltModel.find({});
-    },
-    getMaltById: async (_, { maltId }) => {
-      return await MaltModel.findById(maltId);
-    },
-    // This for client side use
+    // get all malts by ingredientsListId
     retrieveAllMaltsByIngredientsListId: async (_, { ingredientsListId }) => {
       const ingredientsList =
         await IngredientsListModel.findById(ingredientsListId).populate("malt");
       return ingredientsList.malt;
     },
+    // get one malt by ingredientsListId and maltId
     retrieveOneMaltByIngredientsListId: async (
       _,
       { ingredientsListId, maltId },
@@ -29,13 +23,9 @@ export const maltResolvers = {
       )[0];
     },
   },
+
   Mutation: {
-    // This is for admin use only and should be removed in production
-    addMalt: async (_, { maltName, maltAmount }) => {
-      const malt = await MaltModel.create({ maltName, maltAmount });
-      return malt;
-    },
-    // This for client side use
+    // create malt by ingredientsList with only the name required and add it to the malt array in the ingredientsList
     createMaltByIngredientsList: async (
       _,
       {
@@ -60,6 +50,7 @@ export const maltResolvers = {
       await ingredientsList.save();
       return malt;
     },
+    // update malt by ingredientsListId and maltId
     updateMalt: async (
       _,
       {
@@ -84,6 +75,7 @@ export const maltResolvers = {
       );
       return malt;
     },
+    // remove malt by ingredientsListId and maltId
     removeMaltByIngredientsList: async (_, { ingredientsListId, maltId }) => {
       const ingredientsList =
         await IngredientsListModel.findById(ingredientsListId);

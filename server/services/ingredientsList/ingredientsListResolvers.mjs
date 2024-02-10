@@ -5,15 +5,7 @@ import BeerMasterModel from "../beerMaster/BeerMasterModel.mjs";
 
 export const ingredientsListResolvers = {
   Query: {
-    // these are for admin use and should NOT be used in the client
-    getAllIngredientsList: async () => {
-      return await IngredientsListModel.find({});
-    },
-    getIngredients: async (_, { id }) => {
-      return await IngredientsListModel.findById(id);
-    },
-    // these are for admin use and should NOT be used in the client
-    // get all ingredientsList by beerMaster
+    // get all ingredientsList by beerMasterID
     getAllIngredientsListByBeerMasterID: async (_, { beerMasterId }) => {
       const beerMaster =
         await BeerMasterModel.findById(beerMasterId).populate(
@@ -21,7 +13,7 @@ export const ingredientsListResolvers = {
         );
       return beerMaster.ingredientsList;
     },
-    // get one ingredientsList by beerMaster
+    // get one ingredientsList by beerMasterID and ingredientsListID
     getOneIngredientsListByBeerMasterId: async (
       _,
       { beerMasterId, ingredientsListId },
@@ -34,13 +26,8 @@ export const ingredientsListResolvers = {
       );
     },
   },
+
   Mutation: {
-    // these are for admin use and should NOT be used in the client
-    addIngredientsList: async (_, {}) => {
-      const ingredientsList = await IngredientsListModel.create({});
-      return ingredientsList;
-    },
-    // these are for admin use and should NOT be used in the client
     // create ingredientList by beerMaster with only the name required and add it to the ingredientsList array in the beerMaster
     createIngredientsList: async (_, { beerMasterId }) => {
       const ingredientsList = await IngredientsListModel.create({});
