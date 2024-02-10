@@ -10,8 +10,6 @@ export const additivesTypeDefs = gql`
     additiveAmount: Float
   }
   type Query {
-    getAllAdditives: [Additives]
-    getAdditiveById(additiveID: ID!): Additives
     retrieveAllAdditivesByIngredientsListId(ingredientsListId: ID!): [Additives]
     retrieveOneAdditiveByIdAndIngredientsListId(
       additiveID: ID!
@@ -23,7 +21,6 @@ export const additivesTypeDefs = gql`
     ): [Additives]
   }
   type Mutation {
-    addAdditives(additiveName: String!, additiveAmount: Float): Additives
     createAdditiveByIngredientsListID(
       ingredientsListId: ID!
       additiveName: String!
