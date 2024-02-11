@@ -48,6 +48,9 @@ const ProcessSchema = new Schema({
   lastModified: {
     type: Date,
     default: Date.now,
+    get: (date) => {
+      return date.toISOString();
+    },
   },
 });
 
