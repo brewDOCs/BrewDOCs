@@ -10,6 +10,7 @@ const WortSchema = new Schema({
   },
   wortTemperature: {
     type: Number,
+    required: true,
   },
   wortStartTime: {
     type: Date,

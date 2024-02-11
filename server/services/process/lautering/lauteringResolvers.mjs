@@ -15,7 +15,7 @@ export const lauteringResolvers = {
         await ProcessModel.findById(processId).populate("lautering");
       return process.lautering.filter(
         (lautering) => lautering._id.toString() === lauteringId,
-      );
+      )[0];
     },
   },
   Mutation: {
