@@ -1,38 +1,87 @@
 // Wort Resolvers
 
 import WortModel from "./WortModel.mjs";
-import BeerMasterModel from "../../beerMaster/BeerMasterModel.mjs";
+import ProcessModel from "../ProcessModel.mjs";
 
 export const wortResolvers = {
   Query: {
-    getAllWort: async () => {
-      return await WortModel.find({});
+    getAllWortByProcessId: async (_, { processId }) => {
+      const process = await ProcessModel.findById(processId).populate("wort");
+      return process.wort;
     },
-    getWortById: async (_, { id }) => {
-      return await WortModel.findById(id);
-    },
-    getAllWortByBeerMasterId: async (_, { beerMasterId }) => {
-      const beerMaster =
-        await BeerMasterModel.findById(beerMasterId).populate("wort");
-      return beerMaster.wort;
-    },
-    getOneWortByBeerMasterId: async (_, { beerMasterId, wortId }) => {
-      const beerMaster =
-        await BeerMasterModel.findById(beerMasterId).populate("wort");
-      return beerMaster.wort.filter((wort) => wort._id.toString() === wortId);
+    getOneWortByProcessId: async (_, { processId, wortId }) => {
+      const process = await ProcessModel.findById(processId).populate("wort");
+      return process.wort.filter((wort) => wort._id.toString() === wortId);
     },
   },
   Mutation: {
-    addWort: async (
+    // Create wort step by processId and push it to the process's wort array
+    createWortStep: async (
       _,
-      { wortDescription, wortTemperature, wortStartTime, wortEndTime },
+      {
+        processId,
+        wortDescription,
+        wortTemperature,
+        wortStartTime,
+        wortEndTime,
+        wortElapsedTime,
+        wortNotificationTime,
+        hops,
+        additives,
+      },
     ) => {
       const wort = await WortModel.create({
         wortDescription,
         wortTemperature,
         wortStartTime,
         wortEndTime,
+        wortElapsedTime,
+        wortNotificationTime,
+        hops,
+        additives,
       });
+      const process = await ProcessModel.findById(processId);
+      process.wort.push(wort);
+      await process.save();
+      return wort;
+    },
+    // Remove wort step by processId and remove from process's wort array
+    removeWortStep: async (_, { processId, wortId }) => {
+      const process = await ProcessModel.findById(processId);
+      const wort = await WortModel.findByIdAndDelete(wortId);
+      process.wort.pull(wort);
+      await process.save();
+      return wort;
+    },
+    // Update wort step by wortId
+    updateWortStep: async (
+      _,
+      {
+        wortId,
+        wortDescription,
+        wortTemperature,
+        wortStartTime,
+        wortEndTime,
+        wortElapsedTime,
+        wortNotificationTime,
+        hops,
+        additives,
+      },
+    ) => {
+      const wort = await WortModel.findByIdAndUpdate(
+        wortId,
+        {
+          wortDescription,
+          wortTemperature,
+          wortStartTime,
+          wortEndTime,
+          wortElapsedTime,
+          wortNotificationTime,
+          hops,
+          additives,
+        },
+        { new: true },
+      );
       return wort;
     },
   },

@@ -40,16 +40,6 @@ const ClarificationSchema = new Schema({
   ],
 });
 
-// Calculates elapsed time in seconds using mongoose pre-save middleware, NOTE: does not run on update() or findOneandUpdate()
-// 'this' refers to the document about to be saved
-ClarificationSchema.pre("save", function (next) {
-  if (this.clarificationStartTime && this.clarificationEndTime) {
-    this.clarificationElapsedTime =
-      (this.clarificationEndTime - this.clarificationStartTime) / 1000; // in seconds
-  }
-  next();
-});
-
 const ClarificationModel = model("Clarification", ClarificationSchema);
 
 export default ClarificationModel;
