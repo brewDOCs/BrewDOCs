@@ -7,23 +7,40 @@ export const coolingTypeDefs = gql`
     _id: ID!
     coolingDescription: String!
     coolingTemperature: Float!
-    coolingStartTime: Float!
-    coolingEndTime: Float!
+    coolingStartTime: Float
+    coolingEndTime: Float
+    coolingElapsedTime: Float
+    coolingNotificationTime: Float
     hops: [Hops]
     additives: [Additives]
   }
   type Query {
-    getAllCooling: [Cooling]
-    getCoolingById(coolingId: ID!): Cooling
-    getAllCoolingByBeerMasterId(beerMasterId: ID!): [Cooling]
-    getOneCoolingByBeerMasterId(coolingId: ID!, beerMasterId: ID!): Cooling
+    getAllCoolingStepsByProcessId(processId: ID!): [Cooling]
+    getOneCoolingStepByProcessId(coolingId: ID!, processId: ID!): Cooling
   }
   type Mutation {
-    addCooling(
+    createCoolingStep(
+      processId: ID!
       coolingDescription: String!
       coolingTemperature: Float!
-      coolingStartTime: Float!
-      coolingEndTime: Float!
+      coolingStartTime: Float
+      coolingEndTime: Float
+      coolingElapsedTime: Float
+      coolingNotificationTime: Float
+      hops: [ID]
+      additives: [ID]
+    ): Cooling
+    removeCoolingStep(processId: ID!, coolingId: ID!): Cooling
+    updateCoolingStep(
+      coolingId: ID!
+      coolingDescription: String
+      coolingTemperature: Float
+      coolingStartTime: Float
+      coolingEndTime: Float
+      coolingElapsedTime: Float
+      coolingNotificationTime: Float
+      hops: [ID]
+      additives: [ID]
     ): Cooling
   }
 `;
