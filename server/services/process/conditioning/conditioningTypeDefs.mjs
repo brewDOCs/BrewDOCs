@@ -7,24 +7,37 @@ export const conditioningTypeDefs = gql`
     _id: ID!
     conditioningDescription: String!
     conditioningTemperature: Float!
-    conditioningStartTime: Float!
-    conditioningEndTime: Float!
+    conditioningStartTime: Float
+    conditioningEndTime: Float
+    conditioningElapsedTime: Float
+    conditioningNotificationTime: Float
   }
   type Query {
-    getAllConditioning: [Conditioning]
-    getConditioningById(conditioningId: ID!): Conditioning
-    getAllConditioningByBeerMasterId(beerMasterId: ID!): [Conditioning]
-    getOneConditioningByBeerMasterId(
+    getAllConditioningStepsByProcessId(processId: ID!): [Conditioning]
+    getOneConditioningStepByProcessId(
       conditioningId: ID!
-      beerMasterId: ID!
+      processId: ID!
     ): Conditioning
   }
   type Mutation {
     addConditioning(
+      processId: ID!
       conditioningDescription: String!
       conditioningTemperature: Float!
-      conditioningStartTime: Float!
-      conditioningEndTime: Float!
+      conditioningStartTime: Float
+      conditioningEndTime: Float
+      conditioningElapsedTime: Float
+      conditioningNotificationTime: Float
+    ): Conditioning
+    removeConditioningStep(processId: ID!, conditioningId: ID!): Conditioning
+    updateConditioningStep(
+      conditioningId: ID!
+      conditioningDescription: String
+      conditioningTemperature: Float
+      conditioningStartTime: Float
+      conditioningEndTime: Float
+      conditioningElapsedTime: Float
+      conditioningNotificationTime: Float
     ): Conditioning
   }
 `;
