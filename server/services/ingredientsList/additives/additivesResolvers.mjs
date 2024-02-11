@@ -5,12 +5,6 @@ import IngredientsListModel from "../IngredientsListModel.mjs";
 
 export const additivesResolvers = {
   Query: {
-    getAllAdditives: async () => {
-      return await AdditivesModel.find({});
-    },
-    getAdditiveById: async (_, { additiveID }) => {
-      return await AdditivesModel.findById(additiveID);
-    },
     // get all additives by ingeddientsListId
     retrieveAllAdditivesByIngredientsListId: async (
       _,
@@ -50,13 +44,6 @@ export const additivesResolvers = {
     },
   },
   Mutation: {
-    addAdditives: async (_, { additiveName, additiveAmount }) => {
-      const additive = await AdditivesModel.create({
-        additiveName,
-        additiveAmount,
-      });
-      return additive;
-    },
     // create additive by ingredientsList with only the name and type required and add it to the additives array in the ingredientsList
     createAdditiveByIngredientsListID: async (
       _,
