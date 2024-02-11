@@ -3,20 +3,34 @@
 import { Schema, model } from "mongoose";
 
 const LauteringSchema = new Schema({
-  description: {
+  lauteringDescription: {
     type: String,
+    required: true,
     trim: true,
   },
-  temperature: {
+  lauteringTemperature: {
+    type: Number,
+    required: true,
+  },
+  lauteringStartTime: {
+    type: Date,
+    default: Date.now,
+    get: (date) => {
+      return date.toISOString();
+    },
+  },
+  lauteringEndTime: {
+    type: Date,
+    default: Date.now,
+    get: (date) => {
+      return date.toISOString();
+    },
+  },
+  lauteringElapsedTime: {
     type: Number,
   },
-  startTime: {
-    type: Date,
-    default: Date.now,
-  },
-  endTime: {
-    type: Date,
-    default: Date.now,
+  lauteringNotificationTime: {
+    type: Number,
   },
 });
 
