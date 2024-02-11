@@ -1,40 +1,40 @@
 // Fermentation Resolvers
 
 import FermentationModel from "./FermentationModel.mjs";
-import BeerMasterModel from "../../beerMaster/BeerMasterModel.mjs";
+import ProcessModel from "../ProcessModel.mjs";
 
 export const fermentationResolvers = {
   Query: {
-    getAllFermentation: async () => {
-      return await FermentationModel.find({});
+    getAllFermentationStepsByProcessId: async (_, { processId }) => {
+      const process =
+        await ProcessModel.findById(processId).populate("fermentation");
+      return process.fermentation;
     },
-    getFermentationById: async (_, { id }) => {
-      return await FermentationModel.findById(id);
-    },
-    getAllFermentationByBeerMasterId: async (_, { beerMasterId }) => {
-      const beerMaster =
-        await BeerMasterModel.findById(beerMasterId).populate("fermentation");
-      return beerMaster.fermentation;
-    },
-    getOneFermentationByBeerMasterId: async (
+    getOneFermentationStepByProcessId: async (
       _,
-      { beerMasterId, fermentationId },
+      { processId, fermentationId },
     ) => {
-      const beerMaster =
-        await BeerMasterModel.findById(beerMasterId).populate("fermentation");
-      return beerMaster.fermentation.filter(
+      const process =
+        await ProcessModel.findById(processId).populate("fermentation");
+      return process.fermentation.filter(
         (fermentation) => fermentation._id.toString() === fermentationId,
-      );
+      )[0];
     },
   },
   Mutation: {
-    addFermentation: async (
+    // Create fermentation step by processId and push it to the process's fermentation array
+    createFermentationStep: async (
       _,
       {
+        processId,
         fermentationDescription,
         fermentationTemperature,
         fermentationStartTime,
         fermentationEndTime,
+        fermentationElapsedTime,
+        fermentationNotificationTime,
+        yeast,
+        additives,
       },
     ) => {
       const fermentation = await FermentationModel.create({
@@ -42,7 +42,54 @@ export const fermentationResolvers = {
         fermentationTemperature,
         fermentationStartTime,
         fermentationEndTime,
+        fermentationElapsedTime,
+        fermentationNotificationTime,
+        yeast,
+        additives,
       });
+      const process = await ProcessModel.findById(processId);
+      process.fermentation.push(fermentation);
+      await process.save();
+      return fermentation;
+    },
+    // Remove fermentation step by processId and remove from process's fermentation array
+    removeFermentationStep: async (_, { processId, fermentationId }) => {
+      const process = await ProcessModel.findById(processId);
+      const fermentation =
+        await FermentationModel.findByIdAndDelete(fermentationId);
+      process.fermentation.pull(fermentation);
+      await process.save();
+      return fermentation;
+    },
+    // Update fermentation step by fermentationId
+    updateFermentationStep: async (
+      _,
+      {
+        fermentationId,
+        fermentationDescription,
+        fermentationTemperature,
+        fermentationStartTime,
+        fermentationEndTime,
+        fermentationElapsedTime,
+        fermentationNotificationTime,
+        yeast,
+        additives,
+      },
+    ) => {
+      const fermentation = await FermentationModel.findByIdAndUpdate(
+        fermentationId,
+        {
+          fermentationDescription,
+          fermentationTemperature,
+          fermentationStartTime,
+          fermentationEndTime,
+          fermentationElapsedTime,
+          fermentationNotificationTime,
+          yeast,
+          additives,
+        },
+        { new: true },
+      );
       return fermentation;
     },
   },

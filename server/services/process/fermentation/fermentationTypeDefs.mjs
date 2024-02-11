@@ -7,26 +7,43 @@ export const fermentationTypeDefs = gql`
     _id: ID!
     fermentationDescription: String!
     fermentationTemperature: Float!
-    fermentationStartTime: Float!
-    fermentationEndTime: Float!
+    fermentationStartTime: Float
+    fermentationEndTime: Float
+    fermentationElapsedTime: Float
+    fermentationNotificationTime: Float
     yeast: [Yeast]
     additives: [Additives]
   }
   type Query {
-    getAllFermentation: [Fermentation]
-    getFermentationById(fermentationId: ID!): Fermentation
-    getAllFermentationByBeerMasterId(beerMasterId: ID!): [Fermentation]
-    getOneFermentationByBeerMasterId(
+    getAllFermentationStepsByProcessId(processId: ID!): [Fermentation]
+    getOneFermentationStepByProcessId(
       fermentationId: ID!
-      beerMasterId: ID!
+      processId: ID!
     ): Fermentation
   }
   type Mutation {
-    addFermentation(
+    createFermentationStep(
+      processId: ID!
       fermentationDescription: String!
       fermentationTemperature: Float!
-      fermentationStartTime: Float!
-      fermentationEndTime: Float!
+      fermentationStartTime: Float
+      fermentationEndTime: Float
+      fermentationElapsedTime: Float
+      fermentationNotificationTime: Float
+      yeast: [ID]
+      additives: [ID]
+    ): Fermentation
+    removeFermentationStep(processId: ID!, fermentationId: ID!): Fermentation
+    updateFermentationStep(
+      fermentationId: ID!
+      fermentationDescription: String
+      fermentationTemperature: Float
+      fermentationStartTime: Float
+      fermentationEndTime: Float
+      fermentationElapsedTime: Float
+      fermentationNotificationTime: Float
+      yeast: [ID]
+      additives: [ID]
     ): Fermentation
   }
 `;

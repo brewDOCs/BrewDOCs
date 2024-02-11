@@ -17,7 +17,7 @@ export const processResolvers = {
         await BeerMasterModel.findById(beerMasterId).populate("process");
       return beerMaster.process.filter(
         (process) => process._id.toString() === processId,
-      );
+      )[0];
     },
   },
   Mutation: {
