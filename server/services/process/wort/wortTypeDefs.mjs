@@ -7,23 +7,40 @@ export const wortTypeDefs = gql`
     _id: ID!
     wortDescription: String!
     wortTemperature: Float!
-    wortStartTime: Float!
-    wortEndTime: Float!
+    wortStartTime: Float
+    wortEndTime: Float
+    wortElapsedTime: Float
+    wortNotificationTime: Float
     hops: [Hops]
     additives: [Additives]
   }
   type Query {
-    getAllWort: [Wort]
-    getWortById(wortId: ID!): Wort
-    getAllWortByBeerMasterId(beerMasterId: ID!): [Wort]
-    getOneWortByBeerMasterId(wortId: ID!, beerMasterId: ID!): Wort
+    getAllWortByProcessId(processId: ID!): [Wort]
+    getOneWortByProcessId(wortId: ID!, processId: ID!): Wort
   }
   type Mutation {
-    addWort(
+    createWortStep(
+      processId: ID!
       wortDescription: String!
       wortTemperature: Float!
-      wortStartTime: Float!
-      wortEndTime: Float!
+      wortStartTime: Float
+      wortEndTime: Float
+      wortElapsedTime: Float
+      wortNotificationTime: Float
+      hops: [ID]
+      additives: [ID]
+    ): Wort
+    removeWortStep(processId: ID!, wortId: ID!): Wort
+    updateWortStep(
+      wortId: ID!
+      wortDescription: String
+      wortTemperature: Float
+      wortStartTime: Float
+      wortEndTime: Float
+      wortElapsedTime: Float
+      wortNotificationTime: Float
+      hops: [ID]
+      additives: [ID]
     ): Wort
   }
 `;
