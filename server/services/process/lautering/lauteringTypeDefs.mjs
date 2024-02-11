@@ -7,24 +7,34 @@ export const lauteringTypeDefs = gql`
     _id: ID!
     lauteringDescription: String!
     lauteringTemperature: Float!
-    lauteringStartTime: Float!
-    lauteringEndTime: Float!
+    lauteringStartTime: Float
+    lauteringEndTime: Float
+    lauteringElapsedTime: Float
+    lauteringNotificationTime: Float
   }
   type Query {
-    getAllLautering: [Lautering]
-    getLauteringById(lauteringId: ID!): Lautering
-    getAllLauteringByBeerMasterId(beerMasterId: ID!): [Lautering]
-    getOneLauteringByBeerMasterId(
-      lauteringId: ID!
-      beerMasterId: ID!
-    ): Lautering
+    getAllLauteringStepsByProcessId(processId: ID!): [Lautering]
+    getOneLauteringStepByProcessId(lauteringId: ID!, processId: ID!): Lautering
   }
   type Mutation {
-    addLautering(
+    createLauteringStep(
+      processId: ID!
       lauteringDescription: String!
       lauteringTemperature: Float!
-      lauteringStartTime: Float!
-      lauteringEndTime: Float!
+      lauteringStartTime: Float
+      lauteringEndTime: Float
+      lauteringElapsedTime: Float
+      lauteringNotificationTime: Float
+    ): Lautering
+    removeLauteringStep(processId: ID!, lauteringId: ID!): Lautering
+    updateLauteringStep(
+      lauteringId: ID!
+      lauteringDescription: String
+      lauteringTemperature: Float
+      lauteringStartTime: Float
+      lauteringEndTime: Float
+      lauteringElapsedTime: Float
+      lauteringNotificationTime: Float
     ): Lautering
   }
 `;
