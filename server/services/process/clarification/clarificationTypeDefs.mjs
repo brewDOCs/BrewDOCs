@@ -7,25 +7,40 @@ export const clarificationTypeDefs = gql`
     _id: ID!
     clarificationDescription: String!
     clarificationTemperature: Float!
-    clarificationStartTime: Float!
-    clarificationEndTime: Float!
+    clarificationStartTime: Float
+    clarificationEndTime: Float
+    clarificationElapsedTime: Float
+    clarificationNotificationTime: Float
     additives: [Additives]
   }
   type Query {
-    getAllClarification: [Clarification]
-    getClarificationById(clarificationId: ID!): Clarification
-    getAllClarificationByBeerMasterId(beerMasterId: ID!): [Clarification]
-    getOneClarificationByBeerMasterId(
+    getAllClarificationStepsByProcessId(processId: ID!): [Clarification]
+    getOneClarificationStepByProcessId(
       clarificationId: ID!
-      beerMasterId: ID!
+      processId: ID!
     ): Clarification
   }
   type Mutation {
-    addClarification(
+    createClarificationStep(
+      processId: ID!
       clarificationDescription: String!
       clarificationTemperature: Float!
-      clarificationStartTime: Float!
-      clarificationEndTime: Float!
+      clarificationStartTime: Float
+      clarificationEndTime: Float
+      clarificationElapsedTime: Float
+      clarificationNotificationTime: Float
+      additives: [ID]
+    ): Clarification
+    removeClarificationStep(processId: ID!, clarificationId: ID!): Clarification
+    updateClarificationStep(
+      clarificationId: ID!
+      clarificationDescription: String
+      clarificationTemperature: Float
+      clarificationStartTime: Float
+      clarificationEndTime: Float
+      clarificationElapsedTime: Float
+      clarificationNotificationTime: Float
+      additives: [ID]
     ): Clarification
   }
 `;
