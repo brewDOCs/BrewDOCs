@@ -13,10 +13,22 @@ const ConditioningSchema = new Schema({
   conditioningStartTime: {
     type: Date,
     default: Date.now,
+    get: (date) => {
+      return date.toISOString();
+    },
   },
   conditioningEndTime: {
     type: Date,
     default: Date.now,
+    get: (date) => {
+      return date.toISOString();
+    },
+  },
+  conditioningElapsedTime: {
+    type: Number,
+  },
+  conditioningNotificationTime: {
+    type: Number,
   },
 });
 
