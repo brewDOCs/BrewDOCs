@@ -5,13 +5,13 @@ import ProcessModel from "../ProcessModel.mjs";
 
 export const wortResolvers = {
   Query: {
-    getAllWortByProcessId: async (_, { processId }) => {
+    getAllWortStepsByProcessId: async (_, { processId }) => {
       const process = await ProcessModel.findById(processId).populate("wort");
       return process.wort;
     },
-    getOneWortByProcessId: async (_, { processId, wortId }) => {
+    getOneWortStepByProcessId: async (_, { processId, wortId }) => {
       const process = await ProcessModel.findById(processId).populate("wort");
-      return process.wort.filter((wort) => wort._id.toString() === wortId);
+      return process.wort.filter((wort) => wort._id.toString() === wortId)[0];
     },
   },
   Mutation: {

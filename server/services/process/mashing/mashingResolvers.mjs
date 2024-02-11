@@ -1,37 +1,38 @@
 // Mashing Resolvers
 
 import MashingModel from "./MashingModel.mjs";
-import BeerMasterModel from "../../beerMaster/BeerMasterModel.mjs";
+import ProcessModel from "../ProcessModel.mjs";
 
 export const mashingResolvers = {
   Query: {
-    getAllMashing: async () => {
-      return await MashingModel.find();
+    getAllMashingStepsByProcessId: async (_, { processId }) => {
+      const process =
+        await ProcessModel.findById(processId).populate("mashing");
+      return process.mashing;
     },
-    getMashingById: async (_, { id }) => {
-      return await MashingModel.findById(id);
-    },
-    getAllMashingByBeerMasterId: async (_, { beerMasterId }) => {
-      const beerMaster =
-        await BeerMasterModel.findById(beerMasterId).populate("mashing");
-      return beerMaster.mashing;
-    },
-    getOneMashingByBeerMasterId: async (_, { beerMasterId, mashingId }) => {
-      const beerMaster =
-        await BeerMasterModel.findById(beerMasterId).populate("mashing");
-      return beerMaster.mashing.filter(
+    getOneMashingStepByProcessId: async (_, { processId, mashingId }) => {
+      const process =
+        await ProcessModel.findById(processId).populate("mashing");
+      return process.mashing.filter(
         (mashing) => mashing._id.toString() === mashingId,
-      );
+      )[0];
     },
   },
   Mutation: {
-    addMashing: async (
+    // Create mashing step by processId and push it to the process's mashing array
+    createMashingStep: async (
       _,
       {
+        processId,
         mashingDescription,
         mashingTemperature,
         mashingStartTime,
         mashingEndTime,
+        mashingElapsedTime,
+        mashingNotificationTime,
+        malt,
+        water,
+        additives,
       },
     ) => {
       const mashing = await MashingModel.create({
@@ -39,7 +40,56 @@ export const mashingResolvers = {
         mashingTemperature,
         mashingStartTime,
         mashingEndTime,
+        mashingElapsedTime,
+        mashingNotificationTime,
+        malt,
+        water,
+        additives,
       });
+      const process = await ProcessModel.findById(processId);
+      process.mashing.push(mashing);
+      await process.save();
+      return mashing;
+    },
+    // Remove mashing step by processId and remove from process's mashing array
+    removeMashingStep: async (_, { processId, mashingId }) => {
+      const process = await ProcessModel.findById(processId);
+      const mashing = await MashingModel.findByIdAndDelete(mashingId);
+      process.mashing.pull(mashing);
+      await process.save();
+      return mashing;
+    },
+    // Update mashing step by mashingId
+    updateMashingStep: async (
+      _,
+      {
+        mashingId,
+        mashingDescription,
+        mashingTemperature,
+        mashingStartTime,
+        mashingEndTime,
+        mashingElapsedTime,
+        mashingNotificationTime,
+        malt,
+        water,
+        additives,
+      },
+    ) => {
+      const mashing = await MashingModel.findByIdAndUpdate(
+        mashingId,
+        {
+          mashingDescription,
+          mashingTemperature,
+          mashingStartTime,
+          mashingEndTime,
+          mashingElapsedTime,
+          mashingNotificationTime,
+          malt,
+          water,
+          additives,
+        },
+        { new: true },
+      );
       return mashing;
     },
   },

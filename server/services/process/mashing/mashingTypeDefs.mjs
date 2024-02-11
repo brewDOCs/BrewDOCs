@@ -7,24 +7,43 @@ export const mashingTypeDefs = gql`
     _id: ID!
     mashingDescription: String!
     mashingTemperature: Float!
-    mashingStartTime: Float!
-    mashingEndTime: Float!
+    mashingStartTime: Float
+    mashingEndTime: Float
+    mashingElapsedTime: Float
+    mashingNotificationTime: Float
     malt: [Malt]
     water: [Water]
     additives: [Additives]
   }
   type Query {
-    getAllMashing: [Mashing]
-    getMashingById(mashingId: ID!): Mashing
-    getAllMashingByBeerMasterId(beerMasterId: ID!): [Mashing]
-    getOneMashingByBeerMasterId(mashingId: ID!, beerMasterId: ID!): Mashing
+    getAllMashingStepsByProcessId(processId: ID!): [Mashing]
+    getOneMashingStepByProcessId(mashingId: ID!, processId: ID!): Mashing
   }
   type Mutation {
-    addMashing(
+    createMashingStep(
+      processId: ID!
       mashingDescription: String!
       mashingTemperature: Float!
-      mashingStartTime: Float!
-      mashingEndTime: Float!
+      mashingStartTime: Float
+      mashingEndTime: Float
+      mashingElapsedTime: Float
+      mashingNotificationTime: Float
+      malt: [ID]
+      water: [ID]
+      additives: [ID]
+    ): Mashing
+    removeMashingStep(processId: ID!, mashingId: ID!): Mashing
+    updateMashingStep(
+      mashingId: ID!
+      mashingDescription: String
+      mashingTemperature: Float
+      mashingStartTime: Float
+      mashingEndTime: Float
+      mashingElapsedTime: Float
+      mashingNotificationTime: Float
+      malt: [ID]
+      water: [ID]
+      additives: [ID]
     ): Mashing
   }
 `;

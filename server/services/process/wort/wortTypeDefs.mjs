@@ -15,8 +15,8 @@ export const wortTypeDefs = gql`
     additives: [Additives]
   }
   type Query {
-    getAllWortByProcessId(processId: ID!): [Wort]
-    getOneWortByProcessId(wortId: ID!, processId: ID!): Wort
+    getAllWortStepsByProcessId(processId: ID!): [Wort]
+    getOneWortStepByProcessId(wortId: ID!, processId: ID!): Wort
   }
   type Mutation {
     createWortStep(
