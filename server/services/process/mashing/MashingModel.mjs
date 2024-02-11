@@ -13,10 +13,22 @@ const MashingSchema = new Schema({
   mashingStartTime: {
     type: Date,
     default: Date.now,
+    get: (date) => {
+      return date.toISOString();
+    },
   },
   mashingEndTime: {
     type: Date,
     default: Date.now,
+    get: (date) => {
+      return date.toISOString();
+    },
+  },
+  mashingElapsedTime: {
+    type: Number,
+  },
+  mashingNotificationTime: {
+    type: Number,
   },
   malt: {
     type: Schema.Types.ObjectId,
