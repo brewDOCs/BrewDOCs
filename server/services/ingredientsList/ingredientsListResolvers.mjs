@@ -18,7 +18,10 @@ export const ingredientsListResolvers = {
       _,
       { beerMasterId, ingredientsListId },
     ) => {
-      const beerMaster = s;
+      const beerMaster =
+        await BeerMasterModel.findById(beerMasterId).populate(
+          "ingredientsList",
+        );
       await BeerMasterModel.findById(beerMasterId).populate("ingredientsList");
       return beerMaster.ingredientsList.filter(
         (ingredientsList) =>

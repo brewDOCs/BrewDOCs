@@ -15,13 +15,17 @@ export const userResolvers = {
   Mutation: {
     // login user and set token as a cookie
     login: async (_, { username, password }, { res }) => {
-      const user = await UserModel.findOne({ username, password });
+      const user = await UserModel.findOne({ username });
       if (!user) {
-        throw new Error("No user with that username or password found!");
+        throw new Error("No user with that username found!");
+      }
+      const isPasswordValid = await user.comparePassword(password);
+      if (!isPasswordValid) {
+        throw new Error("Invalid password!");
       }
       const token = generateToken(username);
       res.cookie("token", token, { httpOnly: true }); // Set token as a cookie
-      return user; // Return the user object
+      return { username }; // Return the user object
     },
     // signup user and set token as a cookie
     signup: async (_, { username, email, password }, { res }) => {

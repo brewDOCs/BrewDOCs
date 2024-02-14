@@ -20,7 +20,7 @@ export const conditioningTypeDefs = gql`
     ): Conditioning
   }
   type Mutation {
-    addConditioning(
+    createConditioningStep(
       processId: ID!
       conditioningDescription: String!
       conditioningTemperature: Float!
