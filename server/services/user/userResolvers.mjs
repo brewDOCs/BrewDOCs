@@ -23,16 +23,18 @@ export const userResolvers = {
       if (!isPasswordValid) {
         throw new Error("Invalid password!");
       }
-      const token = generateToken(username);
+      // pull username and _id from user object and set them into the token
+      const payload = { username: user.username, _id: user._id };
+      const token = generateToken(payload);
       res.cookie("token", token, { httpOnly: true }); // Set token as a cookie
-      return { username }; // Return the user object
+      return payload; // Return only username and _id if needed
     },
     // signup user and set token as a cookie
     signup: async (_, { username, email, password }, { res }) => {
       const user = await UserModel.create({ username, email, password });
       const token = generateToken(username);
       res.cookie("token", token, { httpOnly: true }); // Set token as a cookie
-      return { username }; // Return only username if needed
+      return { username, _id }; // Return only username if needed
     },
   },
 };
