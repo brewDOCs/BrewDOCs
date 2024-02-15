@@ -15,20 +15,27 @@ export const userResolvers = {
   Mutation: {
     // login user and set token as a cookie
     login: async (_, { username, password }, { res }) => {
-      const user = await UserModel.findOne({ username, password });
+      const user = await UserModel.findOne({ username });
       if (!user) {
-        throw new Error("No user with that username or password found!");
+        throw new Error("No user with that username found!");
       }
-      const token = generateToken(username);
+      const isPasswordValid = await user.comparePassword(password);
+      if (!isPasswordValid) {
+        throw new Error("Invalid password!");
+      }
+      // pull username and _id from user object and set them into the token
+      const payload = { username: user.username, _id: user._id };
+      const token = generateToken(payload);
       res.cookie("token", token, { httpOnly: true }); // Set token as a cookie
-      return user; // Return the user object
+      return payload; // Return only username and _id if needed
     },
-    // signup user and set token as a cookie
+    // signup user and set token as a cookie pulling the payload from the newly created user and setting it into the token
     signup: async (_, { username, email, password }, { res }) => {
       const user = await UserModel.create({ username, email, password });
-      const token = generateToken(username);
+      const payload = { username: user.username, _id: user._id };
+      const token = generateToken(payload);
       res.cookie("token", token, { httpOnly: true }); // Set token as a cookie
-      return { username }; // Return only username if needed
+      return payload; // Return only username and _id if needed
     },
   },
 };
