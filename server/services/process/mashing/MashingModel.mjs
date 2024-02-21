@@ -1,4 +1,4 @@
-// Mashing Model
+// Mashing Step Model
 
 import { Schema, model } from "mongoose";
 
@@ -13,16 +13,10 @@ const MashingSchema = new Schema({
   mashingStartTime: {
     type: Date,
     default: Date.now,
-    get: (date) => {
-      return date.toISOString();
-    },
   },
   mashingEndTime: {
     type: Date,
     default: Date.now,
-    get: (date) => {
-      return date.toISOString();
-    },
   },
   mashingElapsedTime: {
     type: Number,
