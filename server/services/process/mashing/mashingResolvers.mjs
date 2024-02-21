@@ -1,9 +1,12 @@
-// Mashing Resolvers
+// Mashing Step Resolvers
 
 import MashingModel from "./MashingModel.mjs";
 import ProcessModel from "../ProcessModel.mjs";
+import DateScalarType from "../../../utils/dateScalarType.mjs";
 
 export const mashingResolvers = {
+  // Custom scalar type for handling Date objects
+  Date: DateScalarType,
   Query: {
     getAllMashingStepsByProcessId: async (_, { processId }) => {
       const process =

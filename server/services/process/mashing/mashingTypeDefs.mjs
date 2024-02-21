@@ -1,14 +1,16 @@
-// Mashing Type Definitions
+// Mashing Step Type Definitions
 
 import { gql } from "apollo-server-express";
 
 export const mashingTypeDefs = gql`
+  # Custom scalar type for handling Date objects
+  scalar Date
   type Mashing {
     _id: ID!
     mashingDescription: String!
     mashingTemperature: Float!
-    mashingStartTime: Float
-    mashingEndTime: Float
+    mashingStartTime: Date
+    mashingEndTime: Date
     mashingElapsedTime: Float
     mashingNotificationTime: Float
     malt: [Malt]
@@ -24,8 +26,8 @@ export const mashingTypeDefs = gql`
       processId: ID!
       mashingDescription: String!
       mashingTemperature: Float!
-      mashingStartTime: Float
-      mashingEndTime: Float
+      mashingStartTime: Date
+      mashingEndTime: Date
       mashingElapsedTime: Float
       mashingNotificationTime: Float
       malt: [ID]
@@ -37,8 +39,8 @@ export const mashingTypeDefs = gql`
       mashingId: ID!
       mashingDescription: String
       mashingTemperature: Float
-      mashingStartTime: Float
-      mashingEndTime: Float
+      mashingStartTime: Date
+      mashingEndTime: Date
       mashingElapsedTime: Float
       mashingNotificationTime: Float
       malt: [ID]
