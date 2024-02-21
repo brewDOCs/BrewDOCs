@@ -1,9 +1,12 @@
-// Wort Resolvers
+// Wort Step Resolvers
 
 import WortModel from "./WortModel.mjs";
 import ProcessModel from "../ProcessModel.mjs";
+import DateScalarType from "../../../utils/DateScalarType.mjs";
 
 export const wortResolvers = {
+  // Custom scalar type for handling Date objects
+  Date: DateScalarType,
   Query: {
     getAllWortStepsByProcessId: async (_, { processId }) => {
       const process = await ProcessModel.findById(processId).populate("wort");
