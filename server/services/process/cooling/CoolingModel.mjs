@@ -1,4 +1,4 @@
-// Cooling Model
+// Cooling Step Model
 
 import { Schema, model } from "mongoose";
 
@@ -14,17 +14,9 @@ const CoolingSchema = new Schema({
   },
   coolingStartTime: {
     type: Date,
-    default: Date.now,
-    get: (date) => {
-      return date.toISOString();
-    },
   },
   coolingEndTime: {
     type: Date,
-    default: Date.now,
-    get: (date) => {
-      return date.toISOString();
-    },
   },
   coolingElapsedTime: {
     type: Number,

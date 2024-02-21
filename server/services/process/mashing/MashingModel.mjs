@@ -12,11 +12,9 @@ const MashingSchema = new Schema({
   },
   mashingStartTime: {
     type: Date,
-    default: Date.now,
   },
   mashingEndTime: {
     type: Date,
-    default: Date.now,
   },
   mashingElapsedTime: {
     type: Number,

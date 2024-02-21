@@ -1,14 +1,16 @@
-// Cooling Type Definitions
+// Cooling Step Type Definitions
 
 import { gql } from "apollo-server-express";
 
 export const coolingTypeDefs = gql`
+  # Custom scalar type for handling Date objects
+  scalar Date
   type Cooling {
     _id: ID!
     coolingDescription: String!
     coolingTemperature: Float!
-    coolingStartTime: Float
-    coolingEndTime: Float
+    coolingStartTime: Date
+    coolingEndTime: Date
     coolingElapsedTime: Float
     coolingNotificationTime: Float
     hops: [Hops]
@@ -23,8 +25,8 @@ export const coolingTypeDefs = gql`
       processId: ID!
       coolingDescription: String!
       coolingTemperature: Float!
-      coolingStartTime: Float
-      coolingEndTime: Float
+      coolingStartTime: Date
+      coolingEndTime: Date
       coolingElapsedTime: Float
       coolingNotificationTime: Float
       hops: [ID]
@@ -35,8 +37,8 @@ export const coolingTypeDefs = gql`
       coolingId: ID!
       coolingDescription: String
       coolingTemperature: Float
-      coolingStartTime: Float
-      coolingEndTime: Float
+      coolingStartTime: Date
+      coolingEndTime: Date
       coolingElapsedTime: Float
       coolingNotificationTime: Float
       hops: [ID]
