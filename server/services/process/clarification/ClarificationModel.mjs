@@ -1,4 +1,4 @@
-// Clarification Model
+// Clarification Step Model
 
 import { Schema, model } from "mongoose";
 
@@ -14,17 +14,9 @@ const ClarificationSchema = new Schema({
   },
   clarificationStartTime: {
     type: Date,
-    default: Date.now,
-    get: (date) => {
-      return date.toISOString();
-    },
   },
   clarificationEndTime: {
     type: Date,
-    default: Date.now,
-    get: (date) => {
-      return date.toISOString();
-    },
   },
   clarificationElapsedTime: {
     type: Number,

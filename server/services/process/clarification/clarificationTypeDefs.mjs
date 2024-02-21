@@ -1,14 +1,16 @@
-// Clarification Type Definitions
+// Clarification Step Type Definitions
 
 import { gql } from "apollo-server-express";
 
 export const clarificationTypeDefs = gql`
+  # Custom scalar type for handling Date objects
+  scalar Date
   type Clarification {
     _id: ID!
     clarificationDescription: String!
     clarificationTemperature: Float!
-    clarificationStartTime: Float
-    clarificationEndTime: Float
+    clarificationStartTime: Date
+    clarificationEndTime: Date
     clarificationElapsedTime: Float
     clarificationNotificationTime: Float
     additives: [Additives]
@@ -25,8 +27,8 @@ export const clarificationTypeDefs = gql`
       processId: ID!
       clarificationDescription: String!
       clarificationTemperature: Float!
-      clarificationStartTime: Float
-      clarificationEndTime: Float
+      clarificationStartTime: Date
+      clarificationEndTime: Date
       clarificationElapsedTime: Float
       clarificationNotificationTime: Float
       additives: [ID]
@@ -36,8 +38,8 @@ export const clarificationTypeDefs = gql`
       clarificationId: ID!
       clarificationDescription: String
       clarificationTemperature: Float
-      clarificationStartTime: Float
-      clarificationEndTime: Float
+      clarificationStartTime: Date
+      clarificationEndTime: Date
       clarificationElapsedTime: Float
       clarificationNotificationTime: Float
       additives: [ID]
