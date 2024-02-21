@@ -39,6 +39,16 @@ const beerMasterSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "IngredientsList",
   },
+  process: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Process",
+    },
+  ],
+  processMaster: {
+    type: Schema.Types.ObjectId,
+    ref: "Process",
+  },
 });
 
 const BeerMasterModel = model("BeerMaster", beerMasterSchema);

@@ -13,6 +13,8 @@ export const beerMasterTypeDefs = gql`
     image: String
     ingredientsList: [IngredientsList]
     ingredientsListMaster: IngredientsList
+    process: [Process]
+    processMaster: Process
   }
   type Query {
     retrieveAllBeerMastersByUserId(userId: ID!): [BeerMaster]
