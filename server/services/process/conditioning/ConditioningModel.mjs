@@ -12,11 +12,9 @@ const ConditioningSchema = new Schema({
   },
   conditioningStartTime: {
     type: Date,
-    default: Date.now,
   },
   conditioningEndTime: {
     type: Date,
-    default: Date.now,
   },
   conditioningElapsedTime: {
     type: Number,

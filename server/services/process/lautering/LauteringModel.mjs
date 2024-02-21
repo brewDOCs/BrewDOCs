@@ -14,11 +14,9 @@ const LauteringSchema = new Schema({
   },
   lauteringStartTime: {
     type: Date,
-    default: Date.now,
   },
   lauteringEndTime: {
     type: Date,
-    default: Date.now,
   },
   lauteringElapsedTime: {
     type: Number,

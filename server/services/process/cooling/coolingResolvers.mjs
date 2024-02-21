@@ -1,9 +1,12 @@
-// Cooling Resolvers
+// Cooling Step Resolvers
 
 import CoolingModel from "./CoolingModel.mjs";
 import ProcessModel from "../ProcessModel.mjs";
+import DateScalarType from "../../../utils/DateScalarType.mjs";
 
 export const coolingResolvers = {
+  // Custom scalar type for handling Date objects
+  Date: DateScalarType,
   Query: {
     getAllCoolingStepsByProcessId: async (_, { processId }) => {
       const process =

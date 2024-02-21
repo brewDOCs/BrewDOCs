@@ -14,11 +14,9 @@ const FermentationSchema = new Schema({
   },
   fermentationStartTime: {
     type: Date,
-    default: Date.now,
   },
   fermentationEndTime: {
     type: Date,
-    default: Date.now,
   },
   fermentationElapsedTime: {
     type: Number,
