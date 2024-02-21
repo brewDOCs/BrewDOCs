@@ -1,14 +1,16 @@
-// Lautering Type Definitions
+// Lautering Step Type Definitions
 
 import { gql } from "apollo-server-express";
 
 export const lauteringTypeDefs = gql`
+  # Custom scalar type for handling Date objects
+  scalar Date
   type Lautering {
     _id: ID!
     lauteringDescription: String!
     lauteringTemperature: Float!
-    lauteringStartTime: Float
-    lauteringEndTime: Float
+    lauteringStartTime: Date
+    lauteringEndTime: Date
     lauteringElapsedTime: Float
     lauteringNotificationTime: Float
   }
@@ -21,8 +23,8 @@ export const lauteringTypeDefs = gql`
       processId: ID!
       lauteringDescription: String!
       lauteringTemperature: Float!
-      lauteringStartTime: Float
-      lauteringEndTime: Float
+      lauteringStartTime: Date
+      lauteringEndTime: Date
       lauteringElapsedTime: Float
       lauteringNotificationTime: Float
     ): Lautering
@@ -31,8 +33,8 @@ export const lauteringTypeDefs = gql`
       lauteringId: ID!
       lauteringDescription: String
       lauteringTemperature: Float
-      lauteringStartTime: Float
-      lauteringEndTime: Float
+      lauteringStartTime: Date
+      lauteringEndTime: Date
       lauteringElapsedTime: Float
       lauteringNotificationTime: Float
     ): Lautering

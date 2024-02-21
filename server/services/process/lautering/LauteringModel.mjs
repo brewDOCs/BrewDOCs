@@ -1,4 +1,4 @@
-// Lautering Model
+// Lautering Step Model
 
 import { Schema, model } from "mongoose";
 
@@ -15,16 +15,10 @@ const LauteringSchema = new Schema({
   lauteringStartTime: {
     type: Date,
     default: Date.now,
-    get: (date) => {
-      return date.toISOString();
-    },
   },
   lauteringEndTime: {
     type: Date,
     default: Date.now,
-    get: (date) => {
-      return date.toISOString();
-    },
   },
   lauteringElapsedTime: {
     type: Number,
