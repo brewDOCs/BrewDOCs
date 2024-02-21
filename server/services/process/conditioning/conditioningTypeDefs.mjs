@@ -3,12 +3,14 @@
 import { gql } from "apollo-server-express";
 
 export const conditioningTypeDefs = gql`
+  # Custom scalar type for handling Date objects
+  scalar Date
   type Conditioning {
     _id: ID!
     conditioningDescription: String!
     conditioningTemperature: Float!
-    conditioningStartTime: Float
-    conditioningEndTime: Float
+    conditioningStartTime: Date
+    conditioningEndTime: Date
     conditioningElapsedTime: Float
     conditioningNotificationTime: Float
   }
@@ -24,8 +26,8 @@ export const conditioningTypeDefs = gql`
       processId: ID!
       conditioningDescription: String!
       conditioningTemperature: Float!
-      conditioningStartTime: Float
-      conditioningEndTime: Float
+      conditioningStartTime: Date
+      conditioningEndTime: Date
       conditioningElapsedTime: Float
       conditioningNotificationTime: Float
     ): Conditioning
@@ -34,8 +36,8 @@ export const conditioningTypeDefs = gql`
       conditioningId: ID!
       conditioningDescription: String
       conditioningTemperature: Float
-      conditioningStartTime: Float
-      conditioningEndTime: Float
+      conditioningStartTime: Date
+      conditioningEndTime: Date
       conditioningElapsedTime: Float
       conditioningNotificationTime: Float
     ): Conditioning

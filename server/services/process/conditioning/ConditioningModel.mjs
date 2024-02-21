@@ -1,4 +1,4 @@
-// Conditioning Model
+// Conditioning Step Model
 
 import { Schema, model } from "mongoose";
 
@@ -13,16 +13,10 @@ const ConditioningSchema = new Schema({
   conditioningStartTime: {
     type: Date,
     default: Date.now,
-    get: (date) => {
-      return date.toISOString();
-    },
   },
   conditioningEndTime: {
     type: Date,
     default: Date.now,
-    get: (date) => {
-      return date.toISOString();
-    },
   },
   conditioningElapsedTime: {
     type: Number,
