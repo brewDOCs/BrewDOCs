@@ -1,9 +1,12 @@
-// Clarification Resolvers
+// Clarification Step Resolvers
 
 import ClarificationModel from "./ClarificationModel.mjs";
 import ProcessModel from "../ProcessModel.mjs";
+import DateScalarType from "../../../utils/DateScalarType.mjs";
 
 export const clarificationResolvers = {
+  // Custom scalar type for handling Date objects
+  Date: DateScalarType,
   Query: {
     getAllClarificationStepsByProcessId: async (_, { processId }) => {
       const process =
