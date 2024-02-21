@@ -1,9 +1,12 @@
-// Conditioning Resolvers
+// Conditioning Step Resolvers
 
 import ConditioningModel from "./ConditioningModel.mjs";
 import ProcessModel from "../ProcessModel.mjs";
+import DateScalarType from "../../../utils/dateScalarType.mjs";
 
 export const conditioningResolvers = {
+  // Custom scalar type for handling Date objects
+  Date: DateScalarType,
   Query: {
     getAllConditioningStepsByProcessId: async (_, { processId }) => {
       const process =
