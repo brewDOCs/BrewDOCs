@@ -1,4 +1,4 @@
-// Wort Model
+// Wort Step Model
 
 import { Schema, model } from "mongoose";
 
@@ -14,17 +14,9 @@ const WortSchema = new Schema({
   },
   wortStartTime: {
     type: Date,
-    default: Date.now,
-    get: (date) => {
-      return date.toISOString();
-    },
   },
   wortEndTime: {
     type: Date,
-    default: Date.now,
-    get: (date) => {
-      return date.toISOString();
-    },
   },
   wortElapsedTime: {
     type: Number,
