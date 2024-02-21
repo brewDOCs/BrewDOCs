@@ -1,14 +1,16 @@
-// Fermentation Type Definitions
+// Fermentation Step Type Definitions
 
 import { gql } from "apollo-server-express";
 
 export const fermentationTypeDefs = gql`
+  # Custom scalar type for handling Date objects
+  scalar Date
   type Fermentation {
     _id: ID!
     fermentationDescription: String!
     fermentationTemperature: Float!
-    fermentationStartTime: Float
-    fermentationEndTime: Float
+    fermentationStartTime: Date
+    fermentationEndTime: Date
     fermentationElapsedTime: Float
     fermentationNotificationTime: Float
     yeast: [Yeast]
@@ -26,8 +28,8 @@ export const fermentationTypeDefs = gql`
       processId: ID!
       fermentationDescription: String!
       fermentationTemperature: Float!
-      fermentationStartTime: Float
-      fermentationEndTime: Float
+      fermentationStartTime: Date
+      fermentationEndTime: Date
       fermentationElapsedTime: Float
       fermentationNotificationTime: Float
       yeast: [ID]
@@ -38,8 +40,8 @@ export const fermentationTypeDefs = gql`
       fermentationId: ID!
       fermentationDescription: String
       fermentationTemperature: Float
-      fermentationStartTime: Float
-      fermentationEndTime: Float
+      fermentationStartTime: Date
+      fermentationEndTime: Date
       fermentationElapsedTime: Float
       fermentationNotificationTime: Float
       yeast: [ID]

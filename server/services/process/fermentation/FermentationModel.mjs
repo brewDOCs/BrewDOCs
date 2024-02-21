@@ -1,4 +1,4 @@
-// Fermentation Model
+// Fermentation Step Model
 
 import { Schema, model } from "mongoose";
 
@@ -15,16 +15,10 @@ const FermentationSchema = new Schema({
   fermentationStartTime: {
     type: Date,
     default: Date.now,
-    get: (date) => {
-      return date.toISOString();
-    },
   },
   fermentationEndTime: {
     type: Date,
     default: Date.now,
-    get: (date) => {
-      return date.toISOString();
-    },
   },
   fermentationElapsedTime: {
     type: Number,
