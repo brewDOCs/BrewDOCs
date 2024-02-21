@@ -2,7 +2,7 @@
 
 import MashingModel from "./MashingModel.mjs";
 import ProcessModel from "../ProcessModel.mjs";
-import DateScalarType from "../../../utils/dateScalarType.mjs";
+import DateScalarType from "../../../utils/DateScalarType.mjs";
 
 export const mashingResolvers = {
   // Custom scalar type for handling Date objects

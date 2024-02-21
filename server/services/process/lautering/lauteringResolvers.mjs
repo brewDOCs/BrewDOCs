@@ -1,9 +1,12 @@
-// Lautering Resolvers
+// Lautering Step Resolvers
 
 import LauteringModel from "./LauteringModel.mjs";
 import ProcessModel from "../ProcessModel.mjs";
+import DateScalarType from "../../../utils/DateScalarType.mjs";
 
 export const lauteringResolvers = {
+  // Custom scalar type for handling Date objects
+  Date: DateScalarType,
   Query: {
     getAllLauteringStepsByProcessId: async (_, { processId }) => {
       const process =
