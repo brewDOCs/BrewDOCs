@@ -1,9 +1,12 @@
-// Fermentation Resolvers
+// Fermentation Step Resolvers
 
 import FermentationModel from "./FermentationModel.mjs";
 import ProcessModel from "../ProcessModel.mjs";
+import DateScalarType from "../../../utils/dateScalarType.mjs";
 
 export const fermentationResolvers = {
+  // Custom scalar type for handling Date objects
+  Date: DateScalarType,
   Query: {
     getAllFermentationStepsByProcessId: async (_, { processId }) => {
       const process =
