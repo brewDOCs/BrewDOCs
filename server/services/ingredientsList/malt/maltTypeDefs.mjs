@@ -5,18 +5,15 @@ import { gql } from "apollo-server-express";
 export const maltTypeDefs = gql`
   type Malt {
     _id: ID!
-    maltName: String
+    maltName: String!
     lovibondColorScale: Float
     sucrosePointsPerPoundPerGallon: Float
     diastaticPower: Float
     maltAmount: Float
   }
   type Query {
-    retrieveAllMaltsByIngredientsListId(ingredientsListId: ID!): [Malt]
-    retrieveOneMaltByIngredientsListId(
-      ingredientsListId: ID!
-      maltId: ID!
-    ): Malt
+    getAllMaltsByIngredientsListId(ingredientsListId: ID!): [Malt]
+    getOneMaltByIngredientsListId(ingredientsListId: ID!, maltId: ID!): Malt
   }
   type Mutation {
     createMaltByIngredientsList(

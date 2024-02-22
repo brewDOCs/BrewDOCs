@@ -9,16 +9,12 @@ export const lauteringResolvers = {
   Date: DateScalarType,
   Query: {
     getAllLauteringStepsByProcessId: async (_, { processId }) => {
-      const process =
-        await ProcessModel.findById(processId).populate("lautering");
+      const process = await ProcessModel.findById(processId).populate("lautering");
       return process.lautering;
     },
     getOneLauteringStepByProcessId: async (_, { processId, lauteringId }) => {
-      const process =
-        await ProcessModel.findById(processId).populate("lautering");
-      return process.lautering.filter(
-        (lautering) => lautering._id.toString() === lauteringId,
-      )[0];
+      const process = await ProcessModel.findById(processId).populate("lautering");
+      return process.lautering.filter((lautering) => lautering._id.toString() === lauteringId)[0];
     },
   },
   Mutation: {

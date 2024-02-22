@@ -6,8 +6,8 @@ export const beerMasterTypeDefs = gql`
   type BeerMaster {
     _id: ID!
     name: String!
+    type: String!
     description: String
-    type: String
     abv: Float
     ibu: Float
     image: String
@@ -17,21 +17,17 @@ export const beerMasterTypeDefs = gql`
     processMaster: Process
   }
   type Query {
-    retrieveAllBeerMastersByUserId(userId: ID!): [BeerMaster]
-    retrieveOneBeerMasterByUserId(beerMasterId: ID!, userId: ID!): BeerMaster
+    getAllBeerMastersByUserId(userId: ID!): [BeerMaster]
+    getOneBeerMasterById(beerMasterId: ID!): BeerMaster
   }
   type Mutation {
-    createBeerMasterByUserID(
-      name: String!
-      type: String!
-      userId: ID!
-    ): BeerMaster
-    removeBeerMasterByUserID(id: ID!, userId: ID!): BeerMaster
+    createBeerMasterByUserID(name: String!, type: String!, userId: ID!): BeerMaster
+    removeBeerMasterByUserID(beerMasterId: ID!): BeerMaster
     updateBeerMaster(
-      id: ID!
-      userId: ID!
+      beerMasterId: ID!
       name: String
       type: String
+      description: String
       abv: Float
       ibu: Float
       image: String

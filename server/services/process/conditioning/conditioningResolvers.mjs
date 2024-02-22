@@ -9,16 +9,11 @@ export const conditioningResolvers = {
   Date: DateScalarType,
   Query: {
     getAllConditioningStepsByProcessId: async (_, { processId }) => {
-      const process =
-        await ProcessModel.findById(processId).populate("conditioning");
+      const process = await ProcessModel.findById(processId).populate("conditioning");
       return process.conditioning;
     },
-    getOneConditioningStepByProcessId: async (
-      _,
-      { processId, conditioningId },
-    ) => {
-      const process =
-        await ProcessModel.findById(processId).populate("conditioning");
+    getOneConditioningStepByProcessId: async (_, { processId, conditioningId }) => {
+      const process = await ProcessModel.findById(processId).populate("conditioning");
       return process.conditioning.filter(
         (conditioning) => conditioning._id.toString() === conditioningId,
       );
@@ -54,8 +49,7 @@ export const conditioningResolvers = {
     // Remove conditioning step by processId and remove from process's conditioning array
     removeConditioningStep: async (_, { processId, conditioningId }) => {
       const process = await ProcessModel.findById(processId);
-      const conditioning =
-        await ConditioningModel.findByIdAndDelete(conditioningId);
+      const conditioning = await ConditioningModel.findByIdAndDelete(conditioningId);
       process.conditioning.pull(conditioning);
       await process.save();
       return conditioning;

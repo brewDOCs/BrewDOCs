@@ -9,16 +9,12 @@ export const mashingResolvers = {
   Date: DateScalarType,
   Query: {
     getAllMashingStepsByProcessId: async (_, { processId }) => {
-      const process =
-        await ProcessModel.findById(processId).populate("mashing");
+      const process = await ProcessModel.findById(processId).populate("mashing");
       return process.mashing;
     },
     getOneMashingStepByProcessId: async (_, { processId, mashingId }) => {
-      const process =
-        await ProcessModel.findById(processId).populate("mashing");
-      return process.mashing.filter(
-        (mashing) => mashing._id.toString() === mashingId,
-      )[0];
+      const process = await ProcessModel.findById(processId).populate("mashing");
+      return process.mashing.filter((mashing) => mashing._id.toString() === mashingId)[0];
     },
   },
   Mutation: {

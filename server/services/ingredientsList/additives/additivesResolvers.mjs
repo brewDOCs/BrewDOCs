@@ -6,41 +6,27 @@ import IngredientsListModel from "../IngredientsListModel.mjs";
 export const additivesResolvers = {
   Query: {
     // get all additives by ingeddientsListId
-    retrieveAllAdditivesByIngredientsListId: async (
-      _,
-      { ingredientsListId },
-    ) => {
+    getAllAdditivesByIngredientsListId: async (_, { ingredientsListId }) => {
       const ingredientsList =
-        await IngredientsListModel.findById(ingredientsListId).populate(
-          "additives",
-        );
+        await IngredientsListModel.findById(ingredientsListId).populate("additives");
       return ingredientsList.additives;
     },
     // get one additive by additiveID and ingredientsListId
-    retrieveOneAdditiveByIdAndIngredientsListId: async (
-      _,
-      { additiveID, ingredientsListId },
-    ) => {
+    getOneAdditiveByIdAndIngredientsListId: async (_, { additiveId, ingredientsListId }) => {
       const ingredientsList =
-        await IngredientsListModel.findById(ingredientsListId).populate(
-          "additives",
-        );
+        await IngredientsListModel.findById(ingredientsListId).populate("additives");
       return ingredientsList.additives.filter(
-        (additive) => additive._id.toString() === additiveID,
+        (additive) => additive._id.toString() === additiveId,
       )[0];
     },
     // get all additives by ingredientsListId and additiveType
-    retrieveAllAdditivesByIngredientsListIdAndAdditiveType: async (
+    getAllAdditivesByIngredientsListIdAndAdditiveType: async (
       _,
       { ingredientsListId, additiveType },
     ) => {
       const ingredientsList =
-        await IngredientsListModel.findById(ingredientsListId).populate(
-          "additives",
-        );
-      return ingredientsList.additives.filter(
-        (additive) => additive.additiveType === additiveType,
-      );
+        await IngredientsListModel.findById(ingredientsListId).populate("additives");
+      return ingredientsList.additives.filter((additive) => additive.additiveType === additiveType);
     },
   },
   Mutation: {
@@ -54,32 +40,24 @@ export const additivesResolvers = {
         additiveType,
         additiveAmount,
       });
-      const ingredientsList =
-        await IngredientsListModel.findById(ingredientsListId);
+      const ingredientsList = await IngredientsListModel.findById(ingredientsListId);
       ingredientsList.additives.push(additive);
       await ingredientsList.save();
       return additive;
     },
-    // update additive by additiveID
-    updateAdditive: async (
-      _,
-      { additiveID, additiveName, additiveType, additiveAmount },
-    ) => {
+    // update additive by additiveId
+    updateAdditive: async (_, { additiveId, additiveName, additiveType, additiveAmount }) => {
       const additive = await AdditivesModel.findByIdAndUpdate(
-        additiveID,
+        additiveId,
         { additiveName, additiveType, additiveAmount },
         { new: true },
       );
       return additive;
     },
-    // remove additive by ingredientsListId and additiveID
-    removeAdditiveByIngredientsListID: async (
-      _,
-      { ingredientsListId, additiveID },
-    ) => {
-      const ingredientsList =
-        await IngredientsListModel.findById(ingredientsListId);
-      const additive = await AdditivesModel.findByIdAndDelete(additiveID);
+    // remove additive by ingredientsListId and additiveId
+    removeAdditiveByIngredientsListID: async (_, { ingredientsListId, additiveId }) => {
+      const ingredientsList = await IngredientsListModel.findById(ingredientsListId);
+      const additive = await AdditivesModel.findByIdAndDelete(additiveId);
       ingredientsList.additives.pull(additive);
       await ingredientsList.save();
       return additive;

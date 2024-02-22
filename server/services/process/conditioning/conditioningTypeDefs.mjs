@@ -16,10 +16,7 @@ export const conditioningTypeDefs = gql`
   }
   type Query {
     getAllConditioningStepsByProcessId(processId: ID!): [Conditioning]
-    getOneConditioningStepByProcessId(
-      conditioningId: ID!
-      processId: ID!
-    ): Conditioning
+    getOneConditioningStepByProcessId(conditioningId: ID!, processId: ID!): Conditioning
   }
   type Mutation {
     createConditioningStep(

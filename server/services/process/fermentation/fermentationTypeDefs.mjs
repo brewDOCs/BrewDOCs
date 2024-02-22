@@ -18,10 +18,7 @@ export const fermentationTypeDefs = gql`
   }
   type Query {
     getAllFermentationStepsByProcessId(processId: ID!): [Fermentation]
-    getOneFermentationStepByProcessId(
-      fermentationId: ID!
-      processId: ID!
-    ): Fermentation
+    getOneFermentationStepByProcessId(fermentationId: ID!, processId: ID!): Fermentation
   }
   type Mutation {
     createFermentationStep(

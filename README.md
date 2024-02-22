@@ -37,7 +37,7 @@ The BEST app for micro-brewers to keep track of their recipes and brews!
 
 THEN
 
-6. Go to https://github.com/brewDOCs/BrewDOCs/pulls to create a pull request to merge your branch into the dev branch (not the main branch!)
+6. Go to https://github.com/brewDOCs/BrewDOCs/pulls to create a pull request to merge your branch into the dev branch
 
 7. Assign it to someone to be reviewed and then merged
 
@@ -46,5 +46,3 @@ THEN
 9. In VS Code run `git checkout dev` and then `git pull origin dev` to pull the changes from the remote (github) dev branch to your local dev branch
 
 10. Go back to step 1 and repeat
-
-NOTE: If you created the branch from an issue make sure to close the branch and the issue on Github.

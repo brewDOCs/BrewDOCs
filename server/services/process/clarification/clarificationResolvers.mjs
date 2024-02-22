@@ -9,16 +9,11 @@ export const clarificationResolvers = {
   Date: DateScalarType,
   Query: {
     getAllClarificationStepsByProcessId: async (_, { processId }) => {
-      const process =
-        await ProcessModel.findById(processId).populate("clarification");
+      const process = await ProcessModel.findById(processId).populate("clarification");
       return process.clarification;
     },
-    getOneClarificationStepByProcessId: async (
-      _,
-      { processId, clarificationId },
-    ) => {
-      const process =
-        await ProcessModel.findById(processId).populate("clarification");
+    getOneClarificationStepByProcessId: async (_, { processId, clarificationId }) => {
+      const process = await ProcessModel.findById(processId).populate("clarification");
       return process.clarification.filter(
         (clarification) => clarification._id.toString() === clarificationId,
       )[0];
@@ -56,8 +51,7 @@ export const clarificationResolvers = {
     // Remove clarification step by processId and remove from process's clarification array
     removeClarificationStep: async (_, { processId, clarificationId }) => {
       const process = await ProcessModel.findById(processId);
-      const clarification =
-        await ClarificationModel.findByIdAndDelete(clarificationId);
+      const clarification = await ClarificationModel.findByIdAndDelete(clarificationId);
       process.clarification.pull(clarification);
       await process.save();
       return clarification;

@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "install": "cd server && npm install",
     "start": "cd server && npx nodemon server.mjs",
-    "prepare": "husky && husky install"
+    "prepare": "husky && husky install",
+    "prettier": "prettier --write ."
   },
   "keywords": [],
   "author": "",

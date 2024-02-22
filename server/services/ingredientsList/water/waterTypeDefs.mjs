@@ -5,7 +5,7 @@ import { gql } from "apollo-server-express";
 export const waterTypeDefs = gql`
   type Water {
     _id: ID!
-    waterAlkalinity: Float
+    waterAlkalinity: Float!
     waterCalcium: Float
     waterMagnesium: Float
     waterSodium: Float
@@ -14,14 +14,11 @@ export const waterTypeDefs = gql`
     waterAmount: Float
   }
   type Query {
-    retrieveAllWaterByIngredientsListID(ingredientsListId: ID!): [Water]
-    retrieveOneWaterByIngredientsListID(
-      ingredientsListId: ID!
-      waterId: ID!
-    ): Water
+    getAllWaterByIngredientsListId(ingredientsListId: ID!): [Water]
+    getOneWaterByIngredientsListId(ingredientsListId: ID!, waterId: ID!): Water
   }
   type Mutation {
-    createWaterByIngredientsListID(
+    createWaterByIngredientsListId(
       ingredientsListId: ID!
       waterAlkalinity: Float!
       waterCalcium: Float
@@ -41,6 +38,6 @@ export const waterTypeDefs = gql`
       waterChloride: Float
       waterAmount: Float
     ): Water
-    removeWaterByIngredientsListID(ingredientsListId: ID!, waterId: ID!): Water
+    removeWaterByIngredientsListId(ingredientsListId: ID!, waterId: ID!): Water
   }
 `;

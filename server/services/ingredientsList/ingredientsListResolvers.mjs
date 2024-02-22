@@ -6,32 +6,24 @@ import BeerMasterModel from "../beerMaster/BeerMasterModel.mjs";
 export const ingredientsListResolvers = {
   Query: {
     // get all ingredientsList by beerMasterID
-    getAllIngredientsListByBeerMasterID: async (_, { beerMasterId }) => {
-      const beerMaster =
-        await BeerMasterModel.findById(beerMasterId).populate(
-          "ingredientsList",
-        );
+    getAllIngredientsListByBeerMasterId: async (_, { beerMasterId }) => {
+      const beerMaster = await BeerMasterModel.findById(beerMasterId).populate("ingredientsList");
       return beerMaster.ingredientsList;
     },
-    // get one ingredientsList by beerMasterID and ingredientsListID
-    getOneIngredientsListByBeerMasterId: async (
-      _,
-      { beerMasterId, ingredientsListId },
-    ) => {
-      const beerMaster =
-        await BeerMasterModel.findById(beerMasterId).populate(
-          "ingredientsList",
-        );
-      await BeerMasterModel.findById(beerMasterId).populate("ingredientsList");
-      return beerMaster.ingredientsList.filter(
-        (ingredientsList) =>
-          ingredientsList._id.toString() === ingredientsListId,
-      );
+    // get one ingredientsList by ingredientsListID
+    getOneIngredientsListById: async (_, { ingredientsListId }) => {
+      const ingredientsList = await IngredientsListModel.findById(ingredientsListId)
+        .populate("malt")
+        .populate("water")
+        .populate("hops")
+        .populate("yeast")
+        .populate("additives");
+      return ingredientsList;
     },
   },
 
   Mutation: {
-    // create ingredientList by beerMaster with only the name required and add it to the ingredientsList array in the beerMaster
+    // create ingredientsList and add it to beerMaster's ingredientsList array
     createIngredientsList: async (_, { beerMasterId }) => {
       const ingredientsList = await IngredientsListModel.create({});
       const beerMaster = await BeerMasterModel.findById(beerMasterId);
@@ -40,16 +32,16 @@ export const ingredientsListResolvers = {
       return ingredientsList;
     },
     // remove ingredientList by beerMasterID and remove from beerMaster's ingredientsList array
-    removeIngredientsList: async (_, { id, beerMasterId }) => {
-      const ingredientsList = await IngredientsListModel.findByIdAndDelete(id);
+    removeIngredientsList: async (_, { ingredientListId, beerMasterId }) => {
+      const ingredientsList = await IngredientsListModel.findByIdAndDelete(ingredientListId);
       const beerMaster = await BeerMasterModel.findById(beerMasterId);
       beerMaster.ingredientsList.pull(ingredientsList);
       await beerMaster.save();
       return ingredientsList;
     },
     // update ingredientList by beerMasterId only touching the lastmodified field
-    updateIngredientsList: async (_, { id, beerMasterId }) => {
-      const ingredientsList = await IngredientsListModel.findById(id);
+    updateIngredientsList: async (_, { ingredientListId, beerMasterId }) => {
+      const ingredientsList = await IngredientsListModel.findById(ingredientListId);
       const beerMaster = await BeerMasterModel.findById(beerMasterId);
       ingredientsList.lastmodified = Date.now();
       await beerMaster.save();
