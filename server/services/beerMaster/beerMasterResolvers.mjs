@@ -17,7 +17,7 @@ export const beerMasterResolvers = {
   },
   Mutation: {
     // create BeerMaster and add it to user's beerMasters array
-    createBeerMasterByUserID: async (_, { name, type, userId }) => {
+    createBeerMasterByUserId: async (_, { name, type, userId }) => {
       const beerMaster = await BeerMasterModel.create({ name, type });
       const user = await UserModel.findById(userId);
       user.beerMasters.push(beerMaster);
@@ -34,7 +34,7 @@ export const beerMasterResolvers = {
       return beerMaster;
     },
     // remove BeerMaster by beerMasterId and remove from user's beerMasters array
-    removeBeerMasterByUserID: async (_, { beerMasterId, userId }) => {
+    removeBeerMasterByUserId: async (_, { beerMasterId, userId }) => {
       const beerMaster = await BeerMasterModel.findByIdAndDelete(beerMasterId);
       const user = await UserModel.findById(userId);
       user.beerMasters.pull(beerMaster);

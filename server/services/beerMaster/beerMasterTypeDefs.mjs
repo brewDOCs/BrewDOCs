@@ -21,8 +21,8 @@ export const beerMasterTypeDefs = gql`
     getOneBeerMasterById(beerMasterId: ID!): BeerMaster
   }
   type Mutation {
-    createBeerMasterByUserID(name: String!, type: String!, userId: ID!): BeerMaster
-    removeBeerMasterByUserID(beerMasterId: ID!): BeerMaster
+    createBeerMasterByUserId(name: String!, type: String!, userId: ID!): BeerMaster
+    removeBeerMasterByUserId(beerMasterId: ID!): BeerMaster
     updateBeerMaster(
       beerMasterId: ID!
       name: String
