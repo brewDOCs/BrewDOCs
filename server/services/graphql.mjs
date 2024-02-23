@@ -1,6 +1,7 @@
 // GraphQL Type Definitions
 import { userTypeDefs } from "./user/userTypeDefs.mjs";
 import { beerMasterTypeDefs } from "./beerMaster/beerMasterTypeDefs.mjs";
+import { brewRunTypeDefs } from "./beerMaster/brewRun/brewRunTypeDefs.mjs";
 import { ingredientsListTypeDefs } from "./ingredientsList/ingredientsListTypeDefs.mjs";
 import { hopsTypeDefs } from "./ingredientsList/hops/hopsTypeDefs.mjs";
 import { maltTypeDefs } from "./ingredientsList/malt/maltTypeDefs.mjs";
@@ -19,6 +20,7 @@ import { lauteringTypeDefs } from "./process/lautering/lauteringTypeDefs.mjs";
 // GraphQL Resolvers
 import { userResolvers } from "./user/userResolvers.mjs";
 import { beerMasterResolvers } from "./beerMaster/beerMasterResolvers.mjs";
+import { brewRunResolvers } from "./beerMaster/brewRun/brewRunResolvers.mjs";
 import { ingredientsListResolvers } from "./ingredientsList/ingredientsListResolvers.mjs";
 import { hopsResolvers } from "./ingredientsList/hops/hopsResolvers.mjs";
 import { maltResolvers } from "./ingredientsList/malt/maltResolvers.mjs";
@@ -37,6 +39,7 @@ import { lauteringResolvers } from "./process/lautering/lauteringResolvers.mjs";
 export const typeDefs = [
   userTypeDefs,
   beerMasterTypeDefs,
+  brewRunTypeDefs,
   ingredientsListTypeDefs,
   hopsTypeDefs,
   maltTypeDefs,
@@ -57,6 +60,7 @@ export const resolvers = {
   Query: {
     ...userResolvers.Query,
     ...beerMasterResolvers.Query,
+    ...brewRunResolvers.Query,
     ...ingredientsListResolvers.Query,
     ...hopsResolvers.Query,
     ...maltResolvers.Query,
@@ -75,6 +79,7 @@ export const resolvers = {
   Mutation: {
     ...userResolvers.Mutation,
     ...beerMasterResolvers.Mutation,
+    ...brewRunResolvers.Mutation,
     ...ingredientsListResolvers.Mutation,
     ...hopsResolvers.Mutation,
     ...maltResolvers.Mutation,

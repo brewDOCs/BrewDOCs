@@ -1,16 +1,16 @@
 // Process Resolvers
 
 import ProcessModel from "./ProcessModel.mjs";
-import BeerMasterModel from "../beerMaster/BeerMasterModel.mjs";
+import BrewRunModel from "../beerMaster/brewRun/BrewRunModel.mjs";
 
 export const processResolvers = {
   Query: {
-    // Get all processes within a beerMaster using the beerMaster ID
-    getAllProcessesByBeerMasterId: async (_, { beerMasterId }) => {
-      const beerMaster = await BeerMasterModel.findById(beerMasterId).populate("process");
-      return beerMaster.process;
+    // Get all processes within a brewRun using the brewRunId
+    getAllProcessesByBrewRunId: async (_, { brewRunId }) => {
+      const brewRun = await BrewRunModel.findById(brewRunId).populate("process");
+      return brewRun.process;
     },
-    // Get one process using the process ID
+    // Get one process using processId
     getOneProcessById: async (_, { processId }) => {
       const process = await ProcessModel.findById(processId)
         .populate("mashing")
@@ -24,23 +24,23 @@ export const processResolvers = {
     },
   },
   Mutation: {
-    // Create a process within a beerMaster using the beerMaster ID
-    createProcess: async (_, { beerMasterId }) => {
+    // Create a process and add it to the brewRun's process array
+    createProcess: async (_, { brewRunId }) => {
       const process = await ProcessModel.create({});
-      const beerMaster = await BeerMasterModel.findById(beerMasterId);
-      beerMaster.process.push(process);
-      await beerMaster.save();
+      const brewRun = await BrewRunModel.findById(brewRunId);
+      brewRun.process.push(process);
+      await brewRun.save();
       return process;
     },
-    // Remove a process within a beerMaster using the beerMaster ID and the process ID
-    removeProcess: async (_, { processId, beerMasterId }) => {
+    // Remove a process within a brewRun using the brewRunId and the processId
+    removeProcess: async (_, { processId, brewRunId }) => {
       const process = await ProcessModel.findByIdAndDelete(processId);
-      const beerMaster = await BeerMasterModel.findById(beerMasterId);
-      beerMaster.process.pull(process);
-      await beerMaster.save();
+      const brewRun = await BrewRunModel.findById(brewRunId);
+      brewRun.process.pull(process);
+      await brewRun.save();
       return process;
     },
-    // Update a process within a beerMaster using the process ID
+    // Update a process within a brewRun using the processId
     updateProcess: async (_, { processId }) => {
       const process = await ProcessModel.findById(processId);
       process.lastModified = Date.now();

@@ -11,10 +11,8 @@ export const beerMasterTypeDefs = gql`
     abv: Float
     ibu: Float
     image: String
-    ingredientsList: [IngredientsList]
-    ingredientsListMaster: IngredientsList
-    process: [Process]
-    processMaster: Process
+    brewRun: [BrewRun]
+    brewRunMaster: BrewRun
   }
   type Query {
     getAllBeerMastersByUserId(userId: ID!): [BeerMaster]
@@ -31,6 +29,8 @@ export const beerMasterTypeDefs = gql`
       abv: Float
       ibu: Float
       image: String
+      brewRun: [ID]
+      brewRunMaster: ID
     ): BeerMaster
   }
 `;
