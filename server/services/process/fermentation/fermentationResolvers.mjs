@@ -9,16 +9,11 @@ export const fermentationResolvers = {
   Date: DateScalarType,
   Query: {
     getAllFermentationStepsByProcessId: async (_, { processId }) => {
-      const process =
-        await ProcessModel.findById(processId).populate("fermentation");
+      const process = await ProcessModel.findById(processId).populate("fermentation");
       return process.fermentation;
     },
-    getOneFermentationStepByProcessId: async (
-      _,
-      { processId, fermentationId },
-    ) => {
-      const process =
-        await ProcessModel.findById(processId).populate("fermentation");
+    getOneFermentationStepByProcessId: async (_, { processId, fermentationId }) => {
+      const process = await ProcessModel.findById(processId).populate("fermentation");
       return process.fermentation.filter(
         (fermentation) => fermentation._id.toString() === fermentationId,
       )[0];
@@ -58,8 +53,7 @@ export const fermentationResolvers = {
     // Remove fermentation step by processId and remove from process's fermentation array
     removeFermentationStep: async (_, { processId, fermentationId }) => {
       const process = await ProcessModel.findById(processId);
-      const fermentation =
-        await FermentationModel.findByIdAndDelete(fermentationId);
+      const fermentation = await FermentationModel.findByIdAndDelete(fermentationId);
       process.fermentation.pull(fermentation);
       await process.save();
       return fermentation;

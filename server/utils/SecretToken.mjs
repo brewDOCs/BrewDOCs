@@ -7,8 +7,7 @@ const expiration = "2h";
 // middleware for token verification
 export const verifyToken = (req, res, next) => {
   const token = req.cookies.token; // Extract token from the cookie
-  if (!token)
-    return res.status(403).send("A token is required for authentication");
+  if (!token) return res.status(403).send("A token is required for authentication");
   try {
     const decoded = jwt.verify(token, process.env.SECRET_TOKEN);
     req.user = decoded;

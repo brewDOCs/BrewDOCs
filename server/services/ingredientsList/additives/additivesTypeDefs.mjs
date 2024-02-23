@@ -5,17 +5,14 @@ import { gql } from "apollo-server-express";
 export const additivesTypeDefs = gql`
   type Additives {
     _id: ID!
-    additiveName: String
-    additiveType: String
+    additiveName: String!
+    additiveType: String!
     additiveAmount: Float
   }
   type Query {
-    retrieveAllAdditivesByIngredientsListId(ingredientsListId: ID!): [Additives]
-    retrieveOneAdditiveByIdAndIngredientsListId(
-      additiveID: ID!
-      ingredientsListId: ID!
-    ): Additives
-    retrieveAllAdditivesByIngredientsListIdAndAdditiveType(
+    getAllAdditivesByIngredientsListId(ingredientsListId: ID!): [Additives]
+    getOneAdditiveByIdAndIngredientsListId(additiveId: ID!, ingredientsListId: ID!): Additives
+    getAllAdditivesByIngredientsListIdAndAdditiveType(
       ingredientsListId: ID!
       additiveType: String!
     ): [Additives]
@@ -28,14 +25,11 @@ export const additivesTypeDefs = gql`
       additiveAmount: Float
     ): Additives
     updateAdditive(
-      additiveID: ID!
+      additiveId: ID!
       additiveName: String
       additiveType: String
       additiveAmount: Float
     ): Additives
-    removeAdditiveByIngredientsListID(
-      ingredientsListId: ID!
-      additiveID: ID!
-    ): Additives
+    removeAdditiveByIngredientsListID(ingredientsListId: ID!, additiveId: ID!): Additives
   }
 `;

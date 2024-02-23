@@ -5,20 +5,17 @@ import { gql } from "apollo-server-express";
 export const hopsTypeDefs = gql`
   type Hops {
     _id: ID!
-    hopsName: String
+    hopsName: String!
     hopsAlphaAcid: Float
     hopsType: String
     hopsAmount: Float
   }
   type Query {
-    retrieveHopsByIngredientsListID(ingredientsListId: ID!): [Hops]
-    retrieveOneHopsByIngredientsListID(
-      ingredientsListId: ID!
-      hopsId: ID!
-    ): Hops
+    getHopsByIngredientsListID(ingredientsListId: ID!): [Hops]
+    getOneHopsByIngredientsListID(ingredientsListId: ID!, hopsId: ID!): Hops
   }
   type Mutation {
-    createHopsByIngredientsListID(
+    createHopsByIngredientsListId(
       ingredientsListId: ID!
       hopsName: String!
       hopsAlphaAcid: Float
@@ -32,6 +29,6 @@ export const hopsTypeDefs = gql`
       hopsType: String
       hopsAmount: Float
     ): Hops
-    removeHopsByIngredientsListID(ingredientsListId: ID!, hopsId: ID!): Hops
+    removeHopsByIngredientsListId(ingredientsListId: ID!, hopsId: ID!): Hops
   }
 `;

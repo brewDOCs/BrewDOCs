@@ -9,16 +9,12 @@ export const coolingResolvers = {
   Date: DateScalarType,
   Query: {
     getAllCoolingStepsByProcessId: async (_, { processId }) => {
-      const process =
-        await ProcessModel.findById(processId).populate("cooling");
+      const process = await ProcessModel.findById(processId).populate("cooling");
       return process.cooling;
     },
     getOneCoolingStepByProcessId: async (_, { processId, coolingId }) => {
-      const process =
-        await ProcessModel.findById(processId).populate("cooling");
-      return process.cooling.filter(
-        (cooling) => cooling._id.toString() === coolingId,
-      )[0];
+      const process = await ProcessModel.findById(processId).populate("cooling");
+      return process.cooling.filter((cooling) => cooling._id.toString() === coolingId)[0];
     },
   },
   Mutation: {

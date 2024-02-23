@@ -15,7 +15,7 @@ try {
 const connection = mongoose.connection;
 
 // Handles error after initial connection was established
-connection.on("error", error => {
+connection.on("error", (error) => {
   logError(error);
 });
 

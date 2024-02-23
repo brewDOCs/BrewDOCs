@@ -6,21 +6,16 @@ import IngredientsListModel from "../IngredientsListModel.mjs";
 export const maltResolvers = {
   Query: {
     // get all malts by ingredientsListId
-    retrieveAllMaltsByIngredientsListId: async (_, { ingredientsListId }) => {
+    getAllMaltsByIngredientsListId: async (_, { ingredientsListId }) => {
       const ingredientsList =
         await IngredientsListModel.findById(ingredientsListId).populate("malt");
       return ingredientsList.malt;
     },
     // get one malt by ingredientsListId and maltId
-    retrieveOneMaltByIngredientsListId: async (
-      _,
-      { ingredientsListId, maltId },
-    ) => {
+    getOneMaltByIngredientsListId: async (_, { ingredientsListId, maltId }) => {
       const ingredientsList =
         await IngredientsListModel.findById(ingredientsListId).populate("malt");
-      return ingredientsList.malt.filter(
-        (malt) => malt._id.toString() === maltId,
-      )[0];
+      return ingredientsList.malt.filter((malt) => malt._id.toString() === maltId)[0];
     },
   },
 
@@ -44,13 +39,12 @@ export const maltResolvers = {
         diastaticPower,
         maltAmount,
       });
-      const ingredientsList =
-        await IngredientsListModel.findById(ingredientsListId);
+      const ingredientsList = await IngredientsListModel.findById(ingredientsListId);
       ingredientsList.malt.push(malt);
       await ingredientsList.save();
       return malt;
     },
-    // update malt by ingredientsListId and maltId
+    // update malt by maltId
     updateMalt: async (
       _,
       {
@@ -77,8 +71,7 @@ export const maltResolvers = {
     },
     // remove malt by ingredientsListId and maltId
     removeMaltByIngredientsList: async (_, { ingredientsListId, maltId }) => {
-      const ingredientsList =
-        await IngredientsListModel.findById(ingredientsListId);
+      const ingredientsList = await IngredientsListModel.findById(ingredientsListId);
       const malt = await MaltModel.findByIdAndDelete(maltId);
       ingredientsList.malt.pull(malt);
       await ingredientsList.save();

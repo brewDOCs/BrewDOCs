@@ -13,17 +13,19 @@ export const ingredientsListTypeDefs = gql`
     lastmodified: String
   }
 
+  input IngredientsListInput {
+    ingredientListId: ID!
+    beerMasterId: ID!
+  }
+
   type Query {
-    getAllIngredientsListByBeerMasterID(beerMasterId: ID!): [IngredientsList]
-    getOneIngredientsListByBeerMasterId(
-      beerMasterId: ID!
-      ingredientsListId: ID!
-    ): [IngredientsList]
+    getAllIngredientsListByBeerMasterId(beerMasterId: ID!): [IngredientsList]
+    getOneIngredientsListById(ingredientsListId: ID!): IngredientsList
   }
 
   type Mutation {
     createIngredientsList(beerMasterId: ID!): IngredientsList
-    removeIngredientsList(id: ID!, beerMasterId: ID!): IngredientsList
-    updateIngredientsList(id: ID!, beerMasterId: ID!): IngredientsList
+    removeIngredientsList(input: IngredientsListInput!): IngredientsList
+    updateIngredientsList(input: IngredientsListInput!): IngredientsList
   }
 `;

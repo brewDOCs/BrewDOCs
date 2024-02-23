@@ -6,30 +6,21 @@ import IngredientsListModel from "../IngredientsListModel.mjs";
 export const waterResolvers = {
   Query: {
     // get all water by ingredientsListId
-    retrieveAllWaterByIngredientsListID: async (_, { ingredientsListId }) => {
+    getAllWaterByIngredientsListId: async (_, { ingredientsListId }) => {
       const ingredientsList =
-        await IngredientsListModel.findById(ingredientsListId).populate(
-          "water",
-        );
+        await IngredientsListModel.findById(ingredientsListId).populate("water");
       return ingredientsList.water;
     },
     // get one water by ingredientsListId and waterId
-    retrieveOneWaterByIngredientsListID: async (
-      _,
-      { ingredientsListId, waterId },
-    ) => {
+    getOneWaterByIngredientsListId: async (_, { ingredientsListId, waterId }) => {
       const ingredientsList =
-        await IngredientsListModel.findById(ingredientsListId).populate(
-          "water",
-        );
-      return ingredientsList.water.filter(
-        (water) => water._id.toString() === waterId,
-      )[0];
+        await IngredientsListModel.findById(ingredientsListId).populate("water");
+      return ingredientsList.water.filter((water) => water._id.toString() === waterId)[0];
     },
   },
   Mutation: {
     // add water by ingredientsList with only the waterAlkalinity required and add it to the water array in the ingredientsList
-    createWaterByIngredientsListID: async (
+    createWaterByIngredientsListId: async (
       _,
       {
         ingredientsListId,
@@ -51,13 +42,12 @@ export const waterResolvers = {
         waterChloride,
         waterAmount,
       });
-      const ingredientsList =
-        await IngredientsListModel.findById(ingredientsListId);
+      const ingredientsList = await IngredientsListModel.findById(ingredientsListId);
       ingredientsList.water.push(water);
       await ingredientsList.save();
       return water;
     },
-    // update water by ingredientsListId and waterId
+    // update water by waterId
     updateWater: async (
       _,
       {
@@ -87,12 +77,8 @@ export const waterResolvers = {
       return water;
     },
     // remove water by ingredientsListId and waterId
-    removeWaterByIngredientsListID: async (
-      _,
-      { ingredientsListId, waterId },
-    ) => {
-      const ingredientsList =
-        await IngredientsListModel.findById(ingredientsListId);
+    removeWaterByIngredientsListId: async (_, { ingredientsListId, waterId }) => {
+      const ingredientsList = await IngredientsListModel.findById(ingredientsListId);
       const water = await WaterModel.findByIdAndDelete(waterId);
       ingredientsList.water.pull(water);
       await ingredientsList.save();

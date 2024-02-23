@@ -17,10 +17,7 @@ export const clarificationTypeDefs = gql`
   }
   type Query {
     getAllClarificationStepsByProcessId(processId: ID!): [Clarification]
-    getOneClarificationStepByProcessId(
-      clarificationId: ID!
-      processId: ID!
-    ): Clarification
+    getOneClarificationStepByProcessId(clarificationId: ID!, processId: ID!): Clarification
   }
   type Mutation {
     createClarificationStep(

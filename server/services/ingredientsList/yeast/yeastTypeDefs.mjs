@@ -5,22 +5,19 @@ import { gql } from "apollo-server-express";
 export const yeastTypeDefs = gql`
   type Yeast {
     _id: ID!
-    yeastName: String
-    strainType: String
+    yeastName: String!
+    strainType: String!
     strainSubType: String
     attenuation: Float
     flocculation: String
     yeastAmount: Float
   }
   type Query {
-    retrieveAllYeastByIngredientsListId(ingredientsListId: ID!): [Yeast]
-    retrieveOneYeastByIngredientsListId(
-      ingredientsListId: ID!
-      yeastId: ID!
-    ): Yeast
+    getAllYeastByIngredientsListId(ingredientsListId: ID!): [Yeast]
+    getOneYeastByIngredientsListId(ingredientsListId: ID!, yeastId: ID!): Yeast
   }
   type Mutation {
-    createYeastByIngredientsList(
+    createYeastByIngredientsListId(
       ingredientsListId: ID!
       yeastName: String!
       strainType: String!
@@ -38,6 +35,6 @@ export const yeastTypeDefs = gql`
       flocculation: String
       yeastAmount: Float
     ): Yeast
-    removeYeastByIngredientsList(ingredientsListId: ID!, yeastId: ID!): Yeast
+    removeYeastByIngredientsListId(ingredientsListId: ID!, yeastId: ID!): Yeast
   }
 `;
