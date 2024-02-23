@@ -29,25 +29,15 @@ const beerMasterSchema = new Schema({
     type: String,
     trim: true,
   },
-  ingredientsList: [
+  brewRun: [
     {
       type: Schema.Types.ObjectId,
-      ref: "IngredientsList",
+      ref: "BrewRun",
     },
   ],
-  ingredientsListMaster: {
+  brewRunMaster: {
     type: Schema.Types.ObjectId,
-    ref: "IngredientsList",
-  },
-  process: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Process",
-    },
-  ],
-  processMaster: {
-    type: Schema.Types.ObjectId,
-    ref: "Process",
+    ref: "BrewRun",
   },
 });
 

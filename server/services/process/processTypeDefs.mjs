@@ -15,12 +15,12 @@ export const processTypeDefs = gql`
     lastModified: String
   }
   type Query {
-    getAllProcessesByBeerMasterId(beerMasterId: ID!): [Process]
+    getAllProcessesByBrewRunId(brewRunId: ID!): [Process]
     getOneProcessById(processId: ID!): Process
   }
   type Mutation {
-    createProcess(beerMasterId: ID!): Process
-    removeProcess(processId: ID!, beerMasterId: ID!): Process
+    createProcess(brewRunId: ID!): Process
+    removeProcess(processId: ID!, brewRunId: ID!): Process
     updateProcess(processId: ID!): Process
   }
 `;

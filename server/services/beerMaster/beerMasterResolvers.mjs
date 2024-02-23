@@ -7,11 +7,13 @@ export const beerMasterResolvers = {
   Query: {
     // get all beerMasters by userId
     getAllBeerMastersByUserId: async (_, { userId }) => {
-      const user = await UserModel.findById(userId).populate("beerMasters");
+      const user = await UserModel.findById(userId)
+        .populate("beerMasters")
+        .populate("beerMasters.brewRun");
       return user.beerMasters;
     },
     getOneBeerMasterById: async (_, { beerMasterId }) => {
-      const beerMaster = await BeerMasterModel.findById(beerMasterId);
+      const beerMaster = await BeerMasterModel.findById(beerMasterId).populate("brewRun");
       return beerMaster;
     },
   },

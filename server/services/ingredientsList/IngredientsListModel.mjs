@@ -36,7 +36,6 @@ const ingredientsListSchema = new Schema({
   lastmodified: {
     type: Date,
     default: Date.now,
-    // format date for get request
     get: (date) => {
       return date.toISOString();
     },
