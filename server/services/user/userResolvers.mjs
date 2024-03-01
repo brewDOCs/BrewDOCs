@@ -9,7 +9,8 @@ export const userResolvers = {
       return await UserModel.find({});
     },
     getOneUser: async (_, { _id }) => {
-      return await UserModel.findById(_id);
+      const user = await UserModel.findById(_id).populate("breweries").populate("beerMasters");
+      return user;
     },
   },
   Mutation: {

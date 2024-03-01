@@ -22,6 +22,12 @@ const userSchema = new Schema({
     required: true,
     trim: true,
   },
+  breweries: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Brewery",
+    },
+  ],
   beerMasters: [
     {
       type: Schema.Types.ObjectId,

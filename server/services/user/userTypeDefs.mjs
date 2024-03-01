@@ -8,6 +8,8 @@ export const userTypeDefs = gql`
     username: String!
     email: String!
     password: String!
+    breweries: [Brewery]
+    beerMasters: [BeerMaster]
   }
   type AuthPayload {
     username: String!
