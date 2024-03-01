@@ -15,12 +15,12 @@ export const beerMasterTypeDefs = gql`
     brewRunMaster: BrewRun
   }
   type Query {
-    getAllBeerMastersByUserId(userId: ID!): [BeerMaster]
+    getAllBeerMastersByBreweryId(breweryId: ID!): [BeerMaster]
     getOneBeerMasterById(beerMasterId: ID!): BeerMaster
   }
   type Mutation {
-    createBeerMasterByUserId(name: String!, type: String!, userId: ID!): BeerMaster
-    removeBeerMasterByUserId(beerMasterId: ID!): BeerMaster
+    createBeerMasterByBreweryId(name: String!, type: String!, breweryId: ID!): BeerMaster
+    removeBeerMasterByBreweryId(beerMasterId: ID!): BeerMaster
     updateBeerMaster(
       beerMasterId: ID!
       name: String

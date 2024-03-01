@@ -9,12 +9,15 @@ export const breweryResolvers = {
     getAllBreweriesByUserId: async (_, { userId }) => {
       const user = await UserModel.findById(userId)
         .populate("breweries")
+        .populate("breweries.beerMasters")
         .populate("breweries.assignedEmployees");
       return user.breweries;
     },
     // get one brewery by breweryId
     getOneBreweryById: async (_, { breweryId }) => {
-      const brewery = await BreweryModel.findById(breweryId).populate("assignedEmployees");
+      const brewery = await BreweryModel.findById(breweryId)
+        .populate("beerMasters")
+        .populate("assignedEmployees");
       return brewery;
     },
   },
