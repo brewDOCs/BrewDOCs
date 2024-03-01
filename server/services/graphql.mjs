@@ -1,5 +1,6 @@
 // GraphQL Type Definitions
 import { userTypeDefs } from "./user/userTypeDefs.mjs";
+import { breweryTypeDefs } from "./brewery/breweryTypeDefs.mjs";
 import { beerMasterTypeDefs } from "./beerMaster/beerMasterTypeDefs.mjs";
 import { brewRunTypeDefs } from "./beerMaster/brewRun/brewRunTypeDefs.mjs";
 import { ingredientsListTypeDefs } from "./ingredientsList/ingredientsListTypeDefs.mjs";
@@ -19,6 +20,7 @@ import { lauteringTypeDefs } from "./process/lautering/lauteringTypeDefs.mjs";
 
 // GraphQL Resolvers
 import { userResolvers } from "./user/userResolvers.mjs";
+import { breweryResolvers } from "./brewery/breweryResolvers.mjs";
 import { beerMasterResolvers } from "./beerMaster/beerMasterResolvers.mjs";
 import { brewRunResolvers } from "./beerMaster/brewRun/brewRunResolvers.mjs";
 import { ingredientsListResolvers } from "./ingredientsList/ingredientsListResolvers.mjs";
@@ -38,6 +40,7 @@ import { lauteringResolvers } from "./process/lautering/lauteringResolvers.mjs";
 
 export const typeDefs = [
   userTypeDefs,
+  breweryTypeDefs,
   beerMasterTypeDefs,
   brewRunTypeDefs,
   ingredientsListTypeDefs,
@@ -59,6 +62,7 @@ export const typeDefs = [
 export const resolvers = {
   Query: {
     ...userResolvers.Query,
+    ...breweryResolvers.Query,
     ...beerMasterResolvers.Query,
     ...brewRunResolvers.Query,
     ...ingredientsListResolvers.Query,
@@ -78,6 +82,7 @@ export const resolvers = {
   },
   Mutation: {
     ...userResolvers.Mutation,
+    ...breweryResolvers.Mutation,
     ...beerMasterResolvers.Mutation,
     ...brewRunResolvers.Mutation,
     ...ingredientsListResolvers.Mutation,
