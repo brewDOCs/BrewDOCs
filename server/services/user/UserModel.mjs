@@ -28,12 +28,6 @@ const userSchema = new Schema({
       ref: "Brewery",
     },
   ],
-  beerMasters: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "BeerMaster",
-    },
-  ],
 });
 
 userSchema.pre("save", async function (next) {

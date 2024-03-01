@@ -9,7 +9,7 @@ export const userResolvers = {
       return await UserModel.find({});
     },
     getOneUser: async (_, { _id }) => {
-      const user = await UserModel.findById(_id).populate("breweries").populate("beerMasters");
+      const user = await UserModel.findById(_id).populate("breweries");
       return user;
     },
   },

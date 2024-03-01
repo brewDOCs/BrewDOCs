@@ -1,16 +1,16 @@
 // BeerMaster Resolvers
 
 import BeerMasterModel from "./BeerMasterModel.mjs";
-import UserModel from "../user/UserModel.mjs";
+import BreweryModel from "../brewery/BreweryModel.mjs";
 
 export const beerMasterResolvers = {
   Query: {
-    // get all beerMasters by userId
-    getAllBeerMastersByUserId: async (_, { userId }) => {
-      const user = await UserModel.findById(userId)
+    // get all beerMasters by breweryId
+    getAllBeerMastersByBreweryId: async (_, { breweryId }) => {
+      const brewery = await BreweryModel.findById(breweryId)
         .populate("beerMasters")
         .populate("beerMasters.brewRun");
-      return user.beerMasters;
+      return brewery.beerMasters;
     },
     getOneBeerMasterById: async (_, { beerMasterId }) => {
       const beerMaster = await BeerMasterModel.findById(beerMasterId).populate("brewRun");
@@ -18,12 +18,12 @@ export const beerMasterResolvers = {
     },
   },
   Mutation: {
-    // create BeerMaster and add it to user's beerMasters array
-    createBeerMasterByUserId: async (_, { name, type, userId }) => {
+    // create BeerMaster and add it to brewery's beerMasters array
+    createBeerMasterByBreweryId: async (_, { name, type, breweryId }) => {
       const beerMaster = await BeerMasterModel.create({ name, type });
-      const user = await UserModel.findById(userId);
-      user.beerMasters.push(beerMaster);
-      await user.save();
+      const brewery = await BreweryModel.findById(breweryId);
+      brewery.beerMasters.push(beerMaster);
+      await brewery.save();
       return beerMaster;
     },
     // update BeerMaster by beerMasterId
@@ -35,13 +35,13 @@ export const beerMasterResolvers = {
       );
       return beerMaster;
     },
-    // remove BeerMaster by beerMasterId and remove from user's beerMasters array
-    removeBeerMasterByUserId: async (_, { beerMasterId, userId }) => {
+    // remove BeerMaster by beerMasterId and remove from brewery's beerMasters array
+    removeBeerMasterByBreweryId: async (_, { beerMasterId, breweryId }) => {
       const beerMaster = await BeerMasterModel.findByIdAndDelete(beerMasterId);
-      const user = await UserModel.findById(userId);
-      user.beerMasters.pull(beerMaster);
-      await user.save();
-      return beerMaster;
+      const brewery = await BreweryModel.findById(breweryId);
+      brewery.beerMasters.pull(beerMaster);
+      await brewery.save();
+      return brewery;
     },
   },
 };
