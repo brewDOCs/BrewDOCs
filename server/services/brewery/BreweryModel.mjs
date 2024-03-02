@@ -13,6 +13,12 @@ const brewerySchema = new Schema({
     type: String,
     trim: true,
   },
+  admins: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
   beerMasters: [
     {
       type: Schema.Types.ObjectId,

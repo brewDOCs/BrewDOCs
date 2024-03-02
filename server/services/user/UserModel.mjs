@@ -11,6 +11,11 @@ const userSchema = new Schema({
     required: "Please enter a username!",
     trim: true,
   },
+  userType: {
+    type: String,
+    enum: ["admin", "employee"],
+    default: "admin",
+  },
   email: {
     type: String,
     unique: true,
@@ -26,6 +31,12 @@ const userSchema = new Schema({
     {
       type: Schema.Types.ObjectId,
       ref: "Brewery",
+    },
+  ],
+  employees: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User",
     },
   ],
 });
