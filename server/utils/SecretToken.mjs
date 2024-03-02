@@ -18,8 +18,8 @@ export const verifyToken = (req, res, next) => {
 };
 
 // middleware for token generation
-export const generateToken = (username, _id) => {
-  const payload = { username, _id };
+export const generateToken = (username, _id, userType, breweryId) => {
+  const payload = { username, _id, userType, breweryId };
   const token = jwt.sign(payload, process.env.SECRET_TOKEN, {
     expiresIn: expiration,
   });
