@@ -26,8 +26,8 @@ export const breweryTypeDefs = gql`
       userId: ID!
     ): Brewery
     updateBrewery(breweryId: ID!, name: String, location: String, employeeLink: String): Brewery
-    addEmployeeToBrewery(breweryId: ID!, userId: ID!): Brewery
-    removeEmployeeFromBrewery(breweryId: ID!, userId: ID!): Brewery
+    addEmployeeToBrewery(breweryId: ID!, userId: ID!): User
+    removeEmployeeFromBrewery(breweryId: ID!, userId: ID!): User
     removeBreweryByUserId(breweryId: ID!, userId: ID!): Brewery
   }
 `;

@@ -83,14 +83,6 @@ export const userResolvers = {
       res.clearCookie("token"); // Clear token
       return "Logged out!";
     },
-    // remove employee from brewery's assignedEmployees array
-    removeEmployeeByBreweryId: async (_, { _id, breweryId }) => {
-      const user = await UserModel.findByIdAndDelete(_id);
-      const brewery = await BreweryModel.findById(breweryId);
-      brewery.assignedEmployees.pull(user);
-      await brewery.save();
-      return user;
-    },
     // delete user and remove from all associated breweries and admin users' employees array
     deleteUser: async (_, { _id }) => {
       const user = await UserModel.findByIdAndDelete(_id);

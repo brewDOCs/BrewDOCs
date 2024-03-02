@@ -57,7 +57,7 @@ export const breweryResolvers = {
       user.breweries.push(brewery);
       await user.save();
       await Promise.all(adminPromise);
-      return brewery;
+      return user;
     },
     // remove Employee from brewery's assignedEmployees array and remove brewery from user's breweries array
     removeEmployeeFromBrewery: async (_, { breweryId, userId }) => {
@@ -73,7 +73,7 @@ export const breweryResolvers = {
       user.breweries.pull(brewery);
       await user.save();
       await Promise.all(adminPromise);
-      return brewery;
+      return user;
     },
     // remove Brewery by breweryId and remove from user's breweries array
     removeBreweryByUserId: async (_, { breweryId, userId }) => {

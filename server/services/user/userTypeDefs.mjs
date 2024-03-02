@@ -33,7 +33,6 @@ export const userTypeDefs = gql`
     ): AuthPayload
     updateUser(_id: ID!, username: String, email: String, password: String): User
     logout: String
-    removeEmployeeByBreweryId(_id: ID!, breweryId: ID!): User
     deleteUser(_id: ID!): User
   }
 `;
