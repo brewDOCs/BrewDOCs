@@ -43,6 +43,23 @@ export const breweryResolvers = {
       );
       return brewery;
     },
+    // add user to brewery's admins array and add brewery to user's breweries array and add all brewery's employees to user's employees array
+    addAdminToBrewery: async (_, { breweryId, userId }) => {
+      const brewery = await BreweryModel.findById(breweryId);
+      const user = await UserModel.findById(userId);
+      const adminPromise = brewery.assignedEmployees.map(async (_Id) => {
+        const employee = await UserModel.findById(_Id);
+        user.employees.push(employee);
+        await user.save();
+      });
+      brewery.admins.push(user);
+      await brewery.save();
+      user.breweries.push(brewery);
+      user.userType = "admin";
+      await user.save();
+      await Promise.all(adminPromise);
+      return user;
+    },
     // add user to brewery's employees array and add user to admin user's employees array
     addEmployeeToBrewery: async (_, { breweryId, userId }) => {
       const brewery = await BreweryModel.findById(breweryId);
@@ -57,6 +74,22 @@ export const breweryResolvers = {
       user.breweries.push(brewery);
       await user.save();
       await Promise.all(adminPromise);
+      return user;
+    },
+    // remove Admin from brewery's admins array and remove brewery from user's breweries array and remove all brewery's employees from user's employees array
+    removeAdminFromBrewery: async (_, { breweryId, userId }) => {
+      const brewery = await BreweryModel.findById(breweryId);
+      const user = await UserModel.findById(userId);
+      const employeePromise = brewery.assignedEmployees.map(async (_Id) => {
+        const employee = await UserModel.findById(_Id);
+        user.employees.pull(employee);
+        await user.save();
+      });
+      brewery.admins.pull(user);
+      await brewery.save();
+      user.breweries.pull(brewery);
+      await user.save();
+      await Promise.all(employeePromise);
       return user;
     },
     // remove Employee from brewery's assignedEmployees array and remove brewery from user's breweries array
