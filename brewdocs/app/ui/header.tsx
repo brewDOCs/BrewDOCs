@@ -3,7 +3,7 @@ import React from "react";
 export default async function Header() {
   return (
     <header className="text-gray-600 body-font bg-slate-300/35 ">
-      <div className="container mx-auto py-2 flex flex-wrap md:flex-row items-center">
+      <div className="container mx-auto py-3 flex flex-wrap md:flex-row items-center">
         <a className="flex title-font font-medium items-center text-gray-800 mb-4 md:mb-0">
           <span className="ml-3 text-xl">BrewDocs</span>
         </a>
