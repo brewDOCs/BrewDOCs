@@ -4,15 +4,15 @@ export default async function Header() {
   return (
     <header className="text-gray-600 body-font bg-slate-300/35 ">
       <div className="container mx-auto py-2 flex flex-wrap md:flex-row items-center">
-        <a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+        <a className="flex title-font font-medium items-center text-gray-800 mb-4 md:mb-0">
           <span className="ml-3 text-xl">BrewDocs</span>
         </a>
-        <nav className="md:mr-auto flex flex-wrap items-center text-base justify-center">
+        <nav className="md:mr-auto flex flex-wrap items-center font-semibold justify-center">
           <a className="ml-5 hover:text-gray-900">About</a>
           <a className="ml-5 hover:text-gray-900">Contact Us</a>
         </nav>
-        <a className="mr-5 hover:text-gray-900">Login</a>
-        <button className="inline-flex items-center bg-amber-200 border-0 py-1 px-3 focus:outline-none hover:bg-amber-300 rounded text-base mt-4 md:mt-0">
+        <a className="mr-5 hover:text-gray-900 font-semibold">Login</a>
+        <button className="inline-flex font-semibold items-center bg-amber-200 border-0 py-1 px-3 focus:outline-none hover:bg-amber-300 rounded text-base mt-4 md:mt-0">
           Get Started
           <svg
             fill="none"
