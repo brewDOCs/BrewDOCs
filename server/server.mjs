@@ -12,6 +12,7 @@ import { mongooseConnection } from "./config/connection.mjs";
 import { typeDefs, resolvers } from "./services/graphql.mjs";
 import cookieParser from "cookie-parser";
 import adminRoutes from "./utils/AdminRoutes.mjs";
+import cors from "cors";
 
 const PORT = process.env.PORT || 4000;
 
@@ -39,8 +40,19 @@ async function startApolloServer() {
 
   app.use("/admin", adminRoutes);
 
+  // Allow credentials and specify origin
+  app.use(
+    cors({
+      origin: "http://localhost:3000", // 👈 Adjust if your frontend runs elsewhere
+      credentials: true, // 👈 Allow cookies to be sent/received
+    }),
+  );
+
   await server.start();
-  server.applyMiddleware({ app });
+  server.applyMiddleware({
+    app,
+    cors: false, // 👈 Disable Apollo's internal CORS handling (we're handling it with Express)
+  });
 
   await new Promise((resolve) => httpServer.listen({ port: PORT }, resolve));
   console.log(`🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}`);

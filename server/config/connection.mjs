@@ -4,6 +4,16 @@ import dotenv from "dotenv";
 dotenv.config();
 const MONGODB_URI = process.env.MONGODB_URI;
 
+// handleError function to log errors
+const handleError = (error) => {
+  console.error("MongoDB connection error:", error);
+};
+
+// logError function to log errors
+const logError = (error) => {
+  console.error("MongoDB connection error:", error);
+};
+
 // Establishes connection to MongoDB and handles errors on initial connection
 try {
   await mongoose.connect(MONGODB_URI || "mongodb://127.0.0.1:27017/BrewDOCS");
