@@ -43,7 +43,7 @@ async function startApolloServer() {
   // Allow credentials and specify origin
   app.use(
     cors({
-      origin: "http://localhost:3000", // 👈 Adjust if your frontend runs elsewhere
+      origin: ["http://localhost:3000", "https://studio.apollographql.com"], // 👈 Adjust if your frontend runs elsewhere
       credentials: true, // 👈 Allow cookies to be sent/received
     }),
   );
