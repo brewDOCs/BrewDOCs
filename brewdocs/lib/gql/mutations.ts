@@ -28,8 +28,9 @@ export const SIGNUP = gql`
   }
 `;
 
+// logout mutation
 export const LOGOUT = gql`
-  mutation {
+  mutation Logout {
     logout
   }
 `;
