@@ -1,8 +1,13 @@
 // /lib/apolloClient.ts
-import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
+
+const httpLink = createHttpLink({
+  uri: "http://localhost:4000/graphql", // Your GraphQL server URI
+  credentials: "include", // ✅ Important: Include cookies with each request
+});
 
 const client = new ApolloClient({
-  uri: "http://localhost:4000/graphql", // Replace with your Apollo Server URI
+  link: httpLink,
   cache: new InMemoryCache(),
 });
 

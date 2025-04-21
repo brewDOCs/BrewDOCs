@@ -63,6 +63,9 @@ export default async function Header() {
             </svg>
           </button>
         </Link>
+        <Link href="/logout" className="hover:text-gray-900 font-semibold">
+          Logout
+        </Link>
       </div>
     );
   };
