@@ -10,6 +10,10 @@ import { GET_USERS } from "@/lib/gql/queries";
 
 gsap.registerPlugin(ScrollTrigger);
 
+// use test page to build the cookie parsing and user authentication
+// check if the user is logged in and if not, redirect to the login page
+// use the Apollo client to fetch the user data and display it on the page
+
 function Users() {
   const { loading, error, data } = useQuery(GET_USERS);
   if (loading) return <p>Loading...</p>;
