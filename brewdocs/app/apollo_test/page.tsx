@@ -10,6 +10,10 @@ import { GET_USERS } from "@/lib/gql/queries";
 
 gsap.registerPlugin(ScrollTrigger);
 
+// use test page to build the cookie parsing and user authentication
+// check if the user is logged in and if not, redirect to the login page
+// use the Apollo client to fetch the user data and display it on the page
+
 function Users() {
   const { loading, error, data } = useQuery(GET_USERS);
   if (loading) return <p>Loading...</p>;
@@ -26,8 +30,12 @@ export default function Home() {
     let ctx = gsap.context(() => {
       const t1 = gsap.timeline();
       // bring in the main title and then the users list in a staggered fashion
-      t1.fromTo("h1", { opacity: 0, y: 100 }, { opacity: 1, y: 0, duration: 1 }).fromTo(
-        "div",
+      t1.fromTo(
+        "#test-page-body h1",
+        { opacity: 0, y: 100 },
+        { opacity: 1, y: 0, duration: 1 },
+      ).fromTo(
+        "#test-page-body div",
         { opacity: 0, y: 100 },
         { opacity: 1, y: 0, duration: 1 },
         "-=0.5",
@@ -38,7 +46,7 @@ export default function Home() {
 
   return (
     <ApolloProvider client={client}>
-      <div className={"md:mr-auto p-1 drop-shadow-xl text-stone-600 max-w-4xl"}>
+      <div id="test-page-body" className={"md:mr-auto p-1 drop-shadow-xl text-stone-600 max-w-4xl"}>
         <h1 className="font-bold text-6xl pb-7">Who are our users?</h1>
         <h2 className="users font-bold text-4xl text-stone-500">
           <Users />
