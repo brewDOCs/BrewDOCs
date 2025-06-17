@@ -7,7 +7,7 @@ import Link from "next/link";
 export default function Home() {
   const Hero = () => {
     return (
-      <section className="text-stone-600 h-[50vh] bg-gradient-to-b from-orange-300/50 w-full grid place-content-center">
+      <section className="text-stone-600 pt-32 h-[50vh] bg-gradient-to-b from-orange-300/50 w-full grid place-content-center">
         <div className="md:w-2/3 mx-auto">
           <div className="rounded-full size-24 bg-orange-300 shadow-xl mx-auto mb-16 grid place-content-center -rotate-12">
             LOGO
