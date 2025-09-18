@@ -30,11 +30,9 @@ export default function Home() {
     let ctx = gsap.context(() => {
       const t1 = gsap.timeline();
       // bring in the main title and then the users list in a staggered fashion
+      t1.fromTo("#test-page-body h1", { opacity: 0, y: 100 }, { opacity: 1, y: 0, duration: 1 });
+
       t1.fromTo(
-        "#test-page-body h1",
-        { opacity: 0, y: 100 },
-        { opacity: 1, y: 0, duration: 1 },
-      ).fromTo(
         "#test-page-body div",
         { opacity: 0, y: 100 },
         { opacity: 1, y: 0, duration: 1 },
