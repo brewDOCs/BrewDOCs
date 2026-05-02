@@ -11,8 +11,8 @@ export const GET_USERS = gql`
 `;
 
 export const GET_USER = gql`
-  query getUser($username: String!) {
-    getUser(username: $username) {
+  query getUsers($username: String!) {
+    getUsers(username: $username) {
       username
       email
       breweries {
